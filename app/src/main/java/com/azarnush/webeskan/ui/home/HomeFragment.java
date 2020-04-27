@@ -54,7 +54,6 @@ public class HomeFragment extends Fragment {
                 Fragment fragment = new All_lawsFragment();
                 HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).addToBackStack(null).commit();
 
-
             }
         });
 
@@ -69,6 +68,7 @@ public class HomeFragment extends Fragment {
         btn_residents_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (homePref.getBoolean("is register", false) && homePref.getBoolean("is login", false)) {
                     Toast.makeText(getContext(), homePref.getBoolean("is register", false) + "", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getContext(), Resident_panelActivity.class));

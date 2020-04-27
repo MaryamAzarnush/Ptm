@@ -38,6 +38,8 @@ public class Login_residentFragment extends Fragment {
     String codRegister;
     Context context;
     public static String isRegister;
+    public static String user_id;
+    SharedPreferences shPref;
 
     String url_Foundation = "http://api.webeskan.com/api/v1/users/";
 
@@ -52,7 +54,7 @@ public class Login_residentFragment extends Fragment {
         btn_login_with_number = root.findViewById(R.id.login);
         btn_resend = root.findViewById(R.id.btn_resend);
         txt_Counter = root.findViewById(R.id.txt_Counter);
-
+        shPref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         sendJSONObjectRequest1();
 
         count();
@@ -69,6 +71,7 @@ public class Login_residentFragment extends Fragment {
                             HomeActivity.fragmentManager.popBackStack();
                             getActivity().finish();
                             startActivity(new Intent(getContext(), Resident_panelActivity.class));
+                            sendJSONObjectRequest_login();
 
                             SharedPreferences.Editor sEdit2 = HomeFragment.homePref.edit();
                             sEdit2.putBoolean("is login", true);
@@ -197,6 +200,43 @@ public class Login_residentFragment extends Fragment {
         queue.add(request);
 
     }
+
+    public void sendJSONObjectRequest_login() {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = url_Foundation + "Login/" + Get_number_residentFragment.mobile_number + "/" + codRegister;
+
+        Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    user_id = response.getString("reasonPhrase");
+                    SharedPreferences.Editor sEdit = shPref.edit();
+                    sEdit.putString("reasonPhrase", user_id);
+                    sEdit.apply();
+                    Toast.makeText(context, user_id, Toast.LENGTH_LONG).show();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        };
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
+        queue.add(request);
+
+    }
+
 
     @Override
     public void onResume() {
