@@ -36,12 +36,13 @@ public class Resident_panelActivity extends AppCompatActivity {
     NavigationView navigationView;
     TextView textView_name;
     TextView textView_number;
+   public static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resident_panel);
-        Toolbar toolbar = findViewById(R.id.toolbar_resident);
+         toolbar = findViewById(R.id.toolbar_resident);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout_resident);

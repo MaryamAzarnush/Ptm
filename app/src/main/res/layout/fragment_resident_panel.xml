@@ -10,17 +10,12 @@
     tools:context=".Resident_panelFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/txt_buildings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="واحدهای شما :"
-        android:textSize="20sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_buildings"
+
         android:layout_marginTop="10dp"
 
         android:orientation="horizontal"
@@ -28,57 +23,37 @@
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="20dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_marginRight="10dp"
-            android:text="#" />
+            android:text="#"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textView22"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_marginRight="10dp"
-            android:text="واحد" />
+            android:text="نام ساختمان"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textView23"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="2"
             android:layout_marginRight="20dp"
-            android:text="نوع مالکیت" />
+            android:text="واحد"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="3"
-            android:layout_marginRight="20dp"
-            android:text="نام ساختمان" />
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="4"
-            android:layout_marginRight="20dp"
-            android:text="تاریخ اقامت" />
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="5"
-            android:layout_marginRight="20dp"
-            android:text="عملیات" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
