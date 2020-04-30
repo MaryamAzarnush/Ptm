@@ -3,6 +3,8 @@ package com.azarnush.webeskan;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,16 +19,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.azarnush.webeskan.Adapter.UnitsAdapter;
 import com.azarnush.webeskan.models.LawInfo6;
+import com.azarnush.webeskan.models.Unit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Resident_panelFragment extends Fragment {
     TextView textView;
+    private List<Unit> units = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private UnitsAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,10 +55,22 @@ public class Resident_panelFragment extends Fragment {
                         .setAction("Action", null).show();
             }
         });
+        textView = root.findViewById(R.id.textView19);
 
         sendJsonArrayRequest_get_units();
-        textView = root.findViewById(R.id.textView19);
+
+        recyclerView = root.findViewById(R.id.recycler_units);
+        adapter = new UnitsAdapter(units);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+        setData();
+
         return root;
+    }
+    private void setData(){
+        units.add(new Unit("2","بیتا", "واحد 3"));
+        adapter.notifyDataSetChanged();
     }
 
     @Override
