@@ -11,14 +11,12 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <LinearLayout
+        android:id="@+id/lineare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:id="@+id/lineare"
         android:layoutDirection="rtl"
-
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -37,18 +35,15 @@
             android:id="@+id/textView22"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-
-            android:layout_marginRight="10dp"
+            android:gravity="center"
             android:text="نام ساختمان"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:gravity="center" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:text="واحد"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -70,8 +65,7 @@
         android:id="@+id/recycler_units"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lineare"
-         />
+        android:layout_below="@+id/lineare" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new"

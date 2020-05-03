@@ -1,5 +1,6 @@
 package com.azarnush.webeskan;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.ClientError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
@@ -31,13 +34,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.azarnush.webeskan.Login_residentFragment.shPref;
+import static com.azarnush.webeskan.Login_residentFragment.user_id;
 
 public class Resident_panelFragment extends Fragment {
     TextView textView;
     private List<Unit> units = new ArrayList<>();
     private RecyclerView recyclerView;
     private UnitsAdapter adapter;
-
+    SharedPreferences shPref ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class Resident_panelFragment extends Fragment {
         HomeActivity.navigationView.getMenu().findItem(R.id.nav_exit_Account).setVisible(true);
 
         View root = inflater.inflate(R.layout.fragment_resident_panel, container, false);
+
+        shPref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
         FloatingActionButton fab = root.findViewById(R.id.fab_new);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,21 +64,26 @@ public class Resident_panelFragment extends Fragment {
         });
         textView = root.findViewById(R.id.textView19);
 
-        sendJsonArrayRequest_get_units();
+
 
         recyclerView = root.findViewById(R.id.recycler_units);
+
         adapter = new UnitsAdapter(units);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-        setData();
+        sendJsonArrayRequest_get_units();
+        adapter.notifyDataSetChanged();
+       // setData();
+
+
 
         return root;
     }
-    private void setData(){
-        units.add(new Unit("2","بیتا", "واحد 3"));
-        adapter.notifyDataSetChanged();
-    }
+//    private void setData(){
+//        units.add(new Unit("2","بیتا", "واحد 3"));
+//        adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public void onResume() {
@@ -81,7 +93,8 @@ public class Resident_panelFragment extends Fragment {
 
     public void sendJsonArrayRequest_get_units() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "http://api.webeskan.com/api/v1/users/get-units/" + Login_residentFragment.user_id;
+       user_id = shPref.getString("reasonPhrase", null);
+        String url = "http://api.webeskan.com/api/v1/users/get-units/" + user_id;
 
         Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
 
@@ -89,7 +102,17 @@ public class Resident_panelFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 try {
-                    textView.setText(response.toString());
+                    for(int i =0; i<response.length(); i++){
+                        JSONObject object = response.getJSONObject(i);
+                       // textView.setText(object.getString("buildingTitle"));
+                       // units.add(new Unit(String.valueOf(++i) , object.getString("buildingTitle") ,object.getString("unitTitle")));
+                        String buildingTitle =  object.getString("buildingTitle");
+                        String unitTitle = object.getString("unitTitle");
+                        units.add(new Unit(String.valueOf(++i), buildingTitle,unitTitle));
+
+                    }
+
+                    //textView.setText(response.toString());
 
                 } catch (Exception e) {
                     //textView.setText(e.toString());
@@ -106,6 +129,8 @@ public class Resident_panelFragment extends Fragment {
         };
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         queue.add(request);
     }
 }

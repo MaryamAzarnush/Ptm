@@ -39,7 +39,7 @@ public class Login_residentFragment extends Fragment {
     Context context;
     public static String isRegister;
     public static String user_id;
-    SharedPreferences shPref;
+   public static SharedPreferences shPref ;
 
     String url_Foundation = "http://api.webeskan.com/api/v1/users/";
 
@@ -54,7 +54,8 @@ public class Login_residentFragment extends Fragment {
         btn_login_with_number = root.findViewById(R.id.login);
         btn_resend = root.findViewById(R.id.btn_resend);
         txt_Counter = root.findViewById(R.id.txt_Counter);
-        shPref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+       // shPref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        shPref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         sendJSONObjectRequest1();
 
         count();
@@ -68,10 +69,11 @@ public class Login_residentFragment extends Fragment {
                 if (codRegister.equalsIgnoreCase(user_cod)) {
                     if (counter >= 0) {
                         if (isRegister == "true") {
+                            sendJSONObjectRequest_login();
                             HomeActivity.fragmentManager.popBackStack();
                             getActivity().finish();
                             startActivity(new Intent(getContext(), Resident_panelActivity.class));
-                            sendJSONObjectRequest_login();
+
 
                             SharedPreferences.Editor sEdit2 = HomeFragment.homePref.edit();
                             sEdit2.putBoolean("is login", true);
@@ -142,6 +144,7 @@ public class Login_residentFragment extends Fragment {
                 try {
                     isRegister = response.getString("item1");
                     codRegister = response.getString("item2");
+                    shPref.edit().putString("codRegister", codRegister).apply();
                     Toast.makeText(getContext(), isRegister, Toast.LENGTH_LONG).show();
                     pinGroup.setText(codRegister);
 
@@ -179,6 +182,7 @@ public class Login_residentFragment extends Fragment {
                 try {
                     //isRegister = response.getString("item1");
                     codRegister = response.getString("item2");
+                    shPref.edit().putString("codRegister", codRegister).apply();
                     Toast.makeText(context, codRegister, Toast.LENGTH_LONG).show();
                     pinGroup.setText(codRegister);
 
@@ -212,9 +216,8 @@ public class Login_residentFragment extends Fragment {
 
                 try {
                     user_id = response.getString("reasonPhrase");
-                    SharedPreferences.Editor sEdit = shPref.edit();
-                    sEdit.putString("reasonPhrase", user_id);
-                    sEdit.apply();
+
+                    shPref.edit().putString("reasonPhrase", user_id).apply();
                     Toast.makeText(context, user_id, Toast.LENGTH_LONG).show();
 
 
