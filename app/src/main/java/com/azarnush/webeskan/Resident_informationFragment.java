@@ -25,6 +25,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.Account_register.BooleanRequest;
 import com.azarnush.webeskan.ui.home.HomeFragment;
@@ -104,6 +105,7 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                                 jsonObject.put("Password", password);
                                 jsonObject.put("ConfirmPassword", confirmPassword);
                                 jsonObject.put("Email", email);
+
                                 booleanRequest_user_register();
 
                                 SharedPreferences.Editor sEdit = shPref.edit();
@@ -147,8 +149,8 @@ public class Resident_informationFragment extends Fragment implements TextWatche
         Pattern pattern;
         Matcher matcher;
 
-       // final String PASSWORD_PATTERN = "^[\u0600-\u06FF]+$";
-        final String Name_PATTERN ="[آ-ی ]+";
+        // final String PASSWORD_PATTERN = "^[\u0600-\u06FF]+$";
+        final String Name_PATTERN = "[آ-ی ]+";
         pattern = Pattern.compile(Name_PATTERN);
         matcher = pattern.matcher(name);
 
@@ -170,16 +172,21 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                     if (response == true) {
                         // HomeActivity.fragmentManager.popBackStack();
 
+
                         SharedPreferences.Editor sEdit = shPref.edit();
                         sEdit.putBoolean("is register", true);
                         sEdit.apply();
-
                         SharedPreferences.Editor sEdit2 = HomeFragment.homePref.edit();
                         sEdit2.putBoolean("is login", true);
                         sEdit2.apply();
 
-                        startActivity(new Intent(getContext(), Resident_panelActivity.class));
+
+                        sendJSONObjectRequest_login();
+                        HomeActivity.fragmentManager.popBackStack();
                         getActivity().finish();
+                        startActivity(new Intent(getContext(), Resident_panelActivity.class));
+
+
                     }
                 }
             }, new Response.ErrorListener() {
@@ -194,6 +201,43 @@ public class Resident_informationFragment extends Fragment implements TextWatche
             e.printStackTrace();
         }
     }
+
+    public void sendJSONObjectRequest_login() {
+        String mobile_number = shPref.getString("Mobile", "");
+        String codRegister = shPref.getString("codRegister", "");
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url = "http://api.webeskan.com/api/v1/users/" + "Login/" + mobile_number + "/" + codRegister;
+
+        Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    String user_id = response.getString("reasonPhrase");
+
+                    shPref.edit().putString("reasonPhrase", user_id).apply();
+                    Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        };
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
+        queue.add(request);
+
+    }
+
 
     @Override
     public void onResume() {
@@ -216,13 +260,13 @@ public class Resident_informationFragment extends Fragment implements TextWatche
 
         String name = edt_name_Residents.getText().toString();
 
-        if(!isValidName(name)){
+        if (!isValidName(name)) {
             edt_name_Residents.setError("فقط حروف فارسی قابل قبول هست");
 
         }
 
         String family = edt_family_Residents.getText().toString();
-        if(!isValidName(family)){
+        if (!isValidName(family)) {
             edt_family_Residents.setError("فقط حروف فارسی قابل قبول هست");
         }
 

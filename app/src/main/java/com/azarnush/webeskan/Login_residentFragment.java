@@ -35,10 +35,10 @@ public class Login_residentFragment extends Fragment {
     Button btn_login_with_number, btn_resend;
     TextView txt_Counter;
     public int counter = 30;
-    String codRegister;
+   public static String codRegister;
     Context context;
     public static String isRegister;
-    public static String user_id;
+     String user_id;
    public static SharedPreferences shPref ;
 
     String url_Foundation = "http://api.webeskan.com/api/v1/users/";
@@ -71,14 +71,16 @@ public class Login_residentFragment extends Fragment {
                         if (isRegister == "true") {
                             sendJSONObjectRequest_login();
                             HomeActivity.fragmentManager.popBackStack();
-                            getActivity().finish();
-                            startActivity(new Intent(getContext(), Resident_panelActivity.class));
 
 
                             SharedPreferences.Editor sEdit2 = HomeFragment.homePref.edit();
                             sEdit2.putBoolean("is login", true);
                             sEdit2.putBoolean("is register", true);
                             sEdit2.apply();
+
+                            getActivity().finish();
+                            startActivity(new Intent(getContext(), Resident_panelActivity.class));
+
 
                         } else {
                             Fragment fragment = new Resident_informationFragment();
