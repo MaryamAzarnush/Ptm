@@ -104,14 +104,17 @@ public class Resident_panelFragment extends Fragment {
 
                 try {
                     units.clear();
-                    adapter.notifyDataSetChanged();
-                    for (int i = 0; i < response.length(); i++) {
+
+                    // adapter.notifyDataSetChanged();
+                    for (int i = 0; i <= response.length(); i++) {
+
                         JSONObject object = response.getJSONObject(i);
+
 
                         String buildingTitle = object.getString("buildingTitle");
                         String unitTitle = object.getString("unitTitle");
 
-                        units.add(new Unit(String.valueOf(++i), buildingTitle, unitTitle));
+                        units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle));
 
 
                     }

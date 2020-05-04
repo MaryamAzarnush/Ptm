@@ -52,9 +52,9 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:text="ورود"
+            android:text="در انتظار تایید"
             livebutton:backgroundColor="#2D9385"
-            livebutton:corners="50dp"
+            livebutton:corners="20dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
             livebutton:shadowColor="#18443E" />
