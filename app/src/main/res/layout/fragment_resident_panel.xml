@@ -33,12 +33,13 @@
 
         <TextView
             android:id="@+id/textView22"
-            android:layout_width="170dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="نام ساختمان"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginRight="30dp" />
 
         <TextView
             android:id="@+id/textView23"
@@ -46,7 +47,9 @@
             android:layout_height="wrap_content"
             android:text="واحد"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="40dp" />
 
         <TextView
             android:id="@+id/textView27"

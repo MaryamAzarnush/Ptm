@@ -78,9 +78,9 @@ public class Login_residentFragment extends Fragment {
                             sEdit2.putBoolean("is register", true);
                             sEdit2.apply();
 
-                            getActivity().finish();
-                            startActivity(new Intent(getContext(), Resident_panelActivity.class));
 
+                            startActivity(new Intent(getContext(), Resident_panelActivity.class));
+                            getActivity().finish();
 
                         } else {
                             Fragment fragment = new Resident_informationFragment();
