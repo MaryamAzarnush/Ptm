@@ -52,7 +52,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:text="در انتظار تایید"
+            android:text="در انتظار تایید مدیر"
             livebutton:backgroundColor="#2D9385"
             livebutton:corners="20dp"
             livebutton:normalHeight="6dp"
