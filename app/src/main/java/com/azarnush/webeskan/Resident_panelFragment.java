@@ -130,14 +130,15 @@ public class Resident_panelFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                textView.setText("شما واحد ثبت شده ندارید لطفا ثبت نمایید");
+
                 units.clear();
                 adapter.notifyDataSetChanged();
+                textView.setText("شما واحد ثبت شده ندارید لطفا ثبت نمایید");
             }
         };
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
-        request.setRetryPolicy(new DefaultRetryPolicy(1000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
     }
