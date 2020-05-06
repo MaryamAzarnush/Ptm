@@ -20,6 +20,21 @@
             android:layout_height="match_parent"
             android:isScrollContainer="true">
 
+            <ru.katso.livebutton.LiveButton
+                android:id="@+id/btn_register"
+                style="@style/Button_style_text"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/btn_login"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="ثبت نام"
+                app:backgroundColor="#2D9385"
+                app:corners="50dp"
+                app:normalHeight="6dp"
+                app:pressedHeight="2dp"
+                app:shadowColor="#18443E" />
+
             <TextView
                 android:id="@+id/txt_tittle"
                 android:layout_width="wrap_content"
@@ -37,11 +52,11 @@
             <ru.katso.livebutton.LiveButton
                 android:id="@+id/btn_login"
                 style="@style/Button_style_text"
-                android:layout_width="200dp"
+                android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="190dp"
-                android:text="ارسال"
+                android:text="ورود"
                 app:backgroundColor="#2D9385"
                 app:corners="50dp"
                 app:normalHeight="6dp"
