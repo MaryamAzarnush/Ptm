@@ -1,8 +1,11 @@
 package com.azarnush.webeskan;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     public static ImageView imageShare;
     View container;
     public static NavigationView navigationView;
+    Boolean connected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,29 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        if (!isConnected()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+            builder.setTitle(R.string.app_name);
+            builder.setIcon(R.drawable.logo);
+            builder.setMessage("این برنامه به اینترنت نیاز دارد")
+                    .setCancelable(true);
+//                .setPositiveButton("", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        //Toast.makeText(getApplicationContext(), "finish", Toast.LENGTH_LONG).show();
+//                        finish();
+//                    }
+//                })
+//                .setNegativeButton("", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        builder.setPositiveButtonIcon(getResources().getDrawable(R.drawable.ic_done))
+//                .setNegativeButtonIcon(getResources().getDrawable(R.drawable.ic_cancel));
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -104,6 +131,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean isConnected() {
+
+        try {
+
+            ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo nInfo = cm.getActiveNetworkInfo();
+            connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+
+        } catch (Exception e) {
+            // Toast.makeText(context, e.toString(), Toast.LENGTH_LONG);
+
+        }
+        return connected;
     }
 
 
