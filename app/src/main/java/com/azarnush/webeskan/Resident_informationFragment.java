@@ -181,10 +181,16 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                         sEdit2.apply();
 
 
-                        sendJSONObjectRequest_login();
-                        HomeActivity.fragmentManager.popBackStack();
-                        getActivity().finish();
-                        startActivity(new Intent(getContext(), Resident_panelActivity.class));
+                        // sendJSONObjectRequest_login();
+
+                        Fragment fragment = new Get_number_residentFragment();
+
+
+                        HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+
+//                        HomeActivity.fragmentManager.popBackStack();
+//                        getActivity().finish();
+//                        startActivity(new Intent(getContext(), Resident_panelActivity.class));
 
 
                     }

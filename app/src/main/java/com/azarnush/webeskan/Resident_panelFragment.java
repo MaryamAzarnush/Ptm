@@ -100,7 +100,7 @@ public class Resident_panelFragment extends Fragment {
 
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
+                // Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
 
                 try {
                     units.clear();

@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class Get_number_residentFragment extends Fragment {
     View root;
     EditText phone;
-    Button btn_login;
+    Button btn_login, btn_register;
     Integer number_number = 11;
     public Context context;
     public static String mobile_number;
@@ -32,10 +32,41 @@ public class Get_number_residentFragment extends Fragment {
         context = getContext();
         phone = root.findViewById(R.id.phone);
         btn_login = root.findViewById(R.id.btn_login);
+        btn_register = root.findViewById(R.id.btn_register);
         HomeActivity.toolbar.setTitle("ورود ساکنین");
         shPref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        phone.setText(shPref.getString("Mobile", ""));
 
         btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //get mobile number from view
+
+                mobile_number = phone.getText().toString();
+
+
+                if (mobile_number.equals("")) {
+
+                    Toast.makeText(getContext(), "لطفا شماره را وارد نمایید", Toast.LENGTH_LONG).show();
+
+                } else if (mobile_number.length() < number_number) {
+                    Toast.makeText(getContext(), "تعداد ارقام کافی نیست", Toast.LENGTH_LONG).show();
+                } else if (!mobile_number.matches("(\\+98|0)?9\\d{9}")) {
+
+                    Toast.makeText(getContext(), "شماره موبایل نامعتبر هست", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    shPref.edit().putString("Mobile", mobile_number).apply();
+
+                    Fragment fragment = new Login_residentFragment();
+
+                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+
+                }
+            }
+        });
+
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //get mobile number from view
@@ -54,7 +85,7 @@ public class Get_number_residentFragment extends Fragment {
 
                     shPref.edit().putString("Mobile", mobile_number).apply();
 
-                    Fragment fragment = new Login_residentFragment();
+                    Fragment fragment = new Resident_informationFragment();
 
                     HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
 
