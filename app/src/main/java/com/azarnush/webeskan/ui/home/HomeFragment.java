@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.azarnush.webeskan.All_lawsFragment;
 import com.azarnush.webeskan.Get_number_residentFragment;
 import com.azarnush.webeskan.HomeActivity;
+import com.azarnush.webeskan.Manager_loginFragment;
 import com.azarnush.webeskan.R;
 import com.azarnush.webeskan.Resident_panelActivity;
 import com.azarnush.webeskan.Resident_panelFragment;
@@ -73,23 +74,22 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getContext(), homePref.getBoolean("is register", false) + "", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getContext(), Resident_panelActivity.class));
                     getActivity().finish();
-
-
-//                    Fragment fragment = new Resident_panelFragment();
-//                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
-//                            .addToBackStack(null).commit();
-
-
                 } else {
                     Fragment fragment = new Get_number_residentFragment();
                     HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
                             .addToBackStack(null).commit();
                 }
-
             }
         });
 
-
+        btn_managers_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new Manager_loginFragment();
+                HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
+                        .addToBackStack(null).commit();
+            }
+        });
         return root;
     }
 
