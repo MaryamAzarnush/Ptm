@@ -3,19 +3,17 @@ package com.azarnush.webeskan;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.azarnush.webeskan.models.LawInfo2;
-import com.azarnush.webeskan.models.LawInfo3;
+import androidx.fragment.app.Fragment;
 
-public class LawContent2Fragment extends Fragment {
+import com.azarnush.webeskan.models.LawInfo2;
+
+public class LawContent2_2Fragment extends Fragment {
     TextView txt_content;
     TextView txt_law_title;
     TextView txt_law_taq;

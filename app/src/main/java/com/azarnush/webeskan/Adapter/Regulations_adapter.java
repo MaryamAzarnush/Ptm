@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.azarnush.webeskan.HomeActivity;
-import com.azarnush.webeskan.LawContent2Fragment;
+import com.azarnush.webeskan.LawContent2_1Fragment;
+import com.azarnush.webeskan.LawContent2_2Fragment;
 import com.azarnush.webeskan.R;
 import com.azarnush.webeskan.models.LawInfo3;
 
@@ -49,7 +50,7 @@ public class Regulations_adapter extends RecyclerView.Adapter<Regulations_adapte
                 switch (position) {
                     case 0:
 
-                        Fragment fragment = new LawContent2Fragment();
+                        Fragment fragment = new LawContent2_1Fragment();
                         HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
                         break;
                 }

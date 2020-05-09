@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.azarnush.webeskan.HomeActivity;
 import com.azarnush.webeskan.LawContent1Fragment;
-import com.azarnush.webeskan.LawContent2Fragment;
+import com.azarnush.webeskan.LawContent2_1Fragment;
+import com.azarnush.webeskan.LawContent2_2Fragment;
 import com.azarnush.webeskan.R;
 import com.azarnush.webeskan.models.LawInfo2;
 
@@ -57,7 +58,7 @@ public class LawInfo2_adapter extends RecyclerView.Adapter<LawInfo2_adapter.LawI
                         break;
                     case 1:
 
-                        fragment = new LawContent2Fragment();
+                        fragment = new LawContent2_2Fragment();
                         HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).addToBackStack(null).commit();
                         break;
 
