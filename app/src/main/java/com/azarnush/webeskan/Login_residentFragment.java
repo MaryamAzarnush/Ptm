@@ -147,7 +147,7 @@ public class Login_residentFragment extends Fragment {
                     isRegister = response.getString("item1");
                     codRegister = response.getString("item2");
                     shPref.edit().putString("codRegister", codRegister).apply();
-                    Toast.makeText(getContext(), isRegister, Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getContext(), isRegister, Toast.LENGTH_LONG).show();
                     pinGroup.setText(codRegister);
 
                 } catch (Exception e) {
@@ -185,7 +185,7 @@ public class Login_residentFragment extends Fragment {
                     //isRegister = response.getString("item1");
                     codRegister = response.getString("item2");
                     shPref.edit().putString("codRegister", codRegister).apply();
-                    Toast.makeText(context, codRegister, Toast.LENGTH_LONG).show();
+                    // Toast.makeText(context, codRegister, Toast.LENGTH_LONG).show();
                     pinGroup.setText(codRegister);
 
                 } catch (Exception e) {
