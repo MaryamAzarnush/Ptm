@@ -63,36 +63,28 @@ public class Resident_panelFragment extends Fragment {
 
 
         recyclerView = root.findViewById(R.id.recycler_units);
-        sendJsonArrayRequest_get_units();
+
+
         adapter = new UnitsAdapter(units);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
-        adapter.notifyDataSetChanged();
+        sendJsonArrayRequest_get_units();
         // setData();
 
 
         return root;
     }
-//    private void setData(){
-//        units.add(new Unit("2","بیتا", "واحد 3"));
-//        adapter.notifyDataSetChanged();
-//    }
 
     @Override
     public void onResume() {
         super.onResume();
         Resident_panelActivity.toolbar.setTitle("واحدهای شما");
 
-//        sendJsonArrayRequest_get_units();
-//        adapter.notifyDataSetChanged();
-
-
     }
 
     public void sendJsonArrayRequest_get_units() {
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        RequestQueue queue = Volley.newRequestQueue(getContext());
         user_id = shPref.getString("reasonPhrase", "");
         String url = "http://api.webeskan.com/api/v1/users/get-units/" + user_id;
 
@@ -105,8 +97,8 @@ public class Resident_panelFragment extends Fragment {
                 try {
                     units.clear();
 
-                    // adapter.notifyDataSetChanged();
-                    for (int i = 0; i <= response.length(); i++) {
+
+                    for (int i = 0; i < response.length(); i++) {
 
                         JSONObject object = response.getJSONObject(i);
 
@@ -115,13 +107,13 @@ public class Resident_panelFragment extends Fragment {
                         String unitTitle = object.getString("unitTitle");
 
                         units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle));
-
+                        Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
 
                     }
-
+                    adapter.notifyDataSetChanged();
 
                 } catch (Exception e) {
-                    //textView.setText(e.toString());
+                    textView.setText(e.toString());
                 }
             }
         };

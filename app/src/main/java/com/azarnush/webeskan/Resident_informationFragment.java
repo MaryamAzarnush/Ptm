@@ -179,9 +179,10 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                         SharedPreferences.Editor sEdit2 = HomeFragment.homePref.edit();
                         sEdit2.putBoolean("is login", true);
                         sEdit2.apply();
+                        Toast.makeText(getContext(), "ثبت نام انجام شد", Toast.LENGTH_SHORT).show();
 
 
-                        // sendJSONObjectRequest_login();
+                        sendJSONObjectRequest_login();
 
                         Fragment fragment = new Get_number_residentFragment();
 
