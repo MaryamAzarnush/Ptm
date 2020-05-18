@@ -9,21 +9,22 @@
     android:clickable="true"
     tools:context=".Resident_informationFragment">
 
-    <TextView
+    <com.ornach.richtext.RichEditText
 
-        android:id="@+id/txt_number_phone"
+        android:id="@+id/edt_number_phone"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:background="#fff"
-        android:gravity="left"
+        android:hint="شماره تلفن"
+        android:inputType="textPersonName"
         android:padding="15dp"
-        android:shadowRadius="0.60"
-        android:textColor="#B5554A4A"
-        android:textColorHint="#FA131313"
+        android:textColorHint="#B5554A4A"
         android:textSize="16sp"
-        android:textStyle="normal" />
+        app:rt_backgroundColor="#fff"
+        app:rt_borderColor="#DF7F8585"
+        app:rt_borderWidth="2dp"
+        app:rt_radius="10dp" />
 
     <com.ornach.richtext.RichEditText
 

@@ -42,8 +42,9 @@ public class Resident_informationFragment extends Fragment implements TextWatche
     JSONObject jsonObject;
     EditText edt_name_Residents;
     EditText edt_family_Residents;
-    EditText edt_Password;
-    EditText edt_Repeat_Password;
+    //    EditText edt_Password;
+//    EditText edt_Repeat_Password;
+    EditText edt_number_phone;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,19 +52,26 @@ public class Resident_informationFragment extends Fragment implements TextWatche
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_resident_information, container, false);
         HomeActivity.toolbar.setTitle("ورود ساکنین");
-        final TextView txt_number_phone = root.findViewById(R.id.txt_number_phone);
+        edt_number_phone = root.findViewById(R.id.edt_number_phone);
         edt_name_Residents = root.findViewById(R.id.edt_name_Residents);
         edt_family_Residents = root.findViewById(R.id.edt_family_Residents);
-        edt_Password = root.findViewById(R.id.edt_Password);
-        edt_Repeat_Password = root.findViewById(R.id.edt_Repeat_Password);
+//        edt_Password = root.findViewById(R.id.edt_Password);
+//        edt_Repeat_Password = root.findViewById(R.id.edt_Repeat_Password);
         final EditText edt_imail = root.findViewById(R.id.edt_imail);
         final Button btn_registration = root.findViewById(R.id.btn_registration);
 
         edt_name_Residents.addTextChangedListener(this);
         edt_family_Residents.addTextChangedListener(this);
-        edt_Password.addTextChangedListener(this);
-        edt_Repeat_Password.addTextChangedListener(this);
-        txt_number_phone.setText(Get_number_residentFragment.mobile_number);
+//        edt_Password.addTextChangedListener(this);
+//        edt_Repeat_Password.addTextChangedListener(this);
+        String number = Get_number_residentFragment.mobile_number;
+        edt_number_phone.setText(number);
+
+//        if(number=="" || number==null){
+//            edt_number_phone.setEnabled(false);
+//        }
+
+
         shPref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
 
@@ -71,16 +79,16 @@ public class Resident_informationFragment extends Fragment implements TextWatche
             @Override
             public void onClick(View view) {
                 try {
-                    String mobile = txt_number_phone.getText().toString();
+                    String mobile = edt_number_phone.getText().toString();
                     String firstName = edt_name_Residents.getText().toString();
                     String lastName = edt_family_Residents.getText().toString();
-                    String password = edt_Password.getText().toString();
-                    String confirmPassword = edt_Repeat_Password.getText().toString();
+//                    String password = edt_Password.getText().toString();
+//                    String confirmPassword = edt_Repeat_Password.getText().toString();
                     String email = edt_imail.getText().toString();
 
-                    if (!password.equals(confirmPassword) && !confirmPassword.equals("") && !password.equals("")) {
-                        edt_Repeat_Password.setError("تکرار کلمه عبور اشتباه میباشد");
-                    }
+//                    if (!password.equals(confirmPassword) && !confirmPassword.equals("") && !password.equals("")) {
+//                        edt_Repeat_Password.setError("تکرار کلمه عبور اشتباه میباشد");
+//                    }
 
                     if (firstName.equals("")) {
                         edt_name_Residents.setError("لطفا نام را وارد نمایید");
@@ -88,22 +96,22 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                     if (lastName.equals("")) {
                         edt_family_Residents.setError("لطفا نام خانوادگی را وارد نمایید");
                     }
-                    if (password.equals("")) {
-                        edt_Password.setError("لطفا کلمه عبور را وارد نمایید");
-                    }
-                    if (confirmPassword.equals("")) {
-                        edt_Repeat_Password.setError("لطفا تکرار کلمه عبور را وارد نمایید");
-                    }
+//                    if (password.equals("")) {
+//                        edt_Password.setError("لطفا کلمه عبور را وارد نمایید");
+//                    }
+//                    if (confirmPassword.equals("")) {
+//                        edt_Repeat_Password.setError("لطفا تکرار کلمه عبور را وارد نمایید");
+//                    }
 
-                    if (!firstName.equals("") && !lastName.equals("") && !password.equals("") && !confirmPassword.equals("")) {
-                        if (isValidPassword(password)) {
-                            if (password.equals(confirmPassword)) {
+                    if (!firstName.equals("") && !lastName.equals("")) {
+//                        if (isValidPassword(password)) {
+//                            if (password.equals(confirmPassword)) {
                                 jsonObject = new JSONObject();
                                 jsonObject.put("Mobile", mobile);
                                 jsonObject.put("FirstName", firstName);
                                 jsonObject.put("LastName", lastName);
-                                jsonObject.put("Password", password);
-                                jsonObject.put("ConfirmPassword", confirmPassword);
+//                                jsonObject.put("Password", password);
+//                                jsonObject.put("ConfirmPassword", confirmPassword);
                                 jsonObject.put("Email", email);
 
                                 booleanRequest_user_register();
@@ -112,12 +120,12 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                                 sEdit.putString("Mobile", mobile);
                                 sEdit.putString("FirstName", firstName);
                                 sEdit.putString("LastName", lastName);
-                                sEdit.putString("Password", password);
-                                sEdit.putString("ConfirmPassword", confirmPassword);
+//                                sEdit.putString("Password", password);
+//                                sEdit.putString("ConfirmPassword", confirmPassword);
                                 sEdit.putString("Email", email);
                                 sEdit.apply();
-                            }
-                        }
+//                            }
+//                        }
                     }
                     // Toast.makeText(getContext(), "شما ثبت نام شدید", Toast.LENGTH_LONG).show();
                     //  Toast.makeText(getContext(), registerAccount.toString(), Toast.LENGTH_LONG).show();
@@ -131,18 +139,18 @@ public class Resident_informationFragment extends Fragment implements TextWatche
         return root;
     }
 
-    public static boolean isValidPassword(final String password) {
-
-        Pattern pattern;
-        Matcher matcher;
-        // final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-z])(?=\\S+$).{6,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-
-        return matcher.matches();
-
-    }
+//    public static boolean isValidPassword(final String password) {
+//
+//        Pattern pattern;
+//        Matcher matcher;
+//        // final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+//        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-z])(?=\\S+$).{6,}$";
+//        pattern = Pattern.compile(PASSWORD_PATTERN);
+//        matcher = pattern.matcher(password);
+//
+//        return matcher.matches();
+//
+//    }
 
     public static boolean isValidName(final String name) {
 
@@ -277,24 +285,24 @@ public class Resident_informationFragment extends Fragment implements TextWatche
             edt_family_Residents.setError("فقط حروف فارسی قابل قبول هست");
         }
 
-        String password = edt_Password.getText().toString();
-        if (isValidPassword(password)) {
-            edt_Password.setTextColor(Color.parseColor("#00574B"));
-        } else {
-
-            edt_Password.setTextColor(Color.parseColor("#D81B60"));
-            edt_Password.setError("رمز ترکیبی از حداقل 6 حروف انگلیسی بزرگ و کوچک و اعداد میباشد");
-
-            //Toast.makeText(getContext(), "رمز ترکیبی از 8 حروف انگلیسی کوچک و بزرگ و اعداد میباشد", Toast.LENGTH_LONG).show();
-        }
-
-
-        String confirmPassword = edt_Repeat_Password.getText().toString();
-        if (confirmPassword.equals(password)) {
-            edt_Repeat_Password.setTextColor(Color.parseColor("#00574B"));
-        } else
-            edt_Repeat_Password.setTextColor(Color.parseColor("#D81B60"));
-        // edt_Repeat_Password.setError("تکرار کلمه عبور اشتباه میباشد");
+//        String password = edt_Password.getText().toString();
+//        if (isValidPassword(password)) {
+//            edt_Password.setTextColor(Color.parseColor("#00574B"));
+//        } else {
+//
+//            edt_Password.setTextColor(Color.parseColor("#D81B60"));
+//            edt_Password.setError("رمز ترکیبی از حداقل 6 حروف انگلیسی بزرگ و کوچک و اعداد میباشد");
+//
+//            //Toast.makeText(getContext(), "رمز ترکیبی از 8 حروف انگلیسی کوچک و بزرگ و اعداد میباشد", Toast.LENGTH_LONG).show();
+//        }
+//
+//
+//        String confirmPassword = edt_Repeat_Password.getText().toString();
+//        if (confirmPassword.equals(password)) {
+//            edt_Repeat_Password.setTextColor(Color.parseColor("#00574B"));
+//        } else
+//            edt_Repeat_Password.setTextColor(Color.parseColor("#D81B60"));
+//        // edt_Repeat_Password.setError("تکرار کلمه عبور اشتباه میباشد");
 
     }
 }
