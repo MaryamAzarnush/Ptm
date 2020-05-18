@@ -28,7 +28,7 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
     Integer number_number = 11;
     public Context context;
     public static String mobile_number;
-    SharedPreferences shPref;
+    public static SharedPreferences shPref;
     public static String isRegister;
 
     @Override
@@ -91,9 +91,11 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
                             HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
                             break;
                         case "false":
+                            shPref.edit().putString("number fix", "ok").apply();
                             Toast.makeText(getContext(), "لطفا ابتدا ثبت نام کنید", Toast.LENGTH_LONG).show();
                             Fragment fragment2 = new Resident_informationFragment();
                             HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment2).commit();
+
                             break;
 
                     }
@@ -190,7 +192,7 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
 
         switch (v.getId()) {
             case R.id.btn_login:
-
+                mobile_number = phone.getText().toString();
                 if (validation_number()) {
                     sendJSONObjectRequest_isRegister1();
                 }
@@ -198,10 +200,11 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
                 break;
 
             case R.id.btn_register:
-
-                if (validation_number()) {
-                    sendJSONObjectRequest_isRegister2();
-                }
+                mobile_number = phone.getText().toString();
+                if (mobile_number.equals("")) {
+                    Fragment fragment2 = new Resident_informationFragment();
+                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment2).commit();
+                } else sendJSONObjectRequest_isRegister2();
                 break;
         }
     }

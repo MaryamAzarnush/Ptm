@@ -44,7 +44,7 @@ public class Resident_informationFragment extends Fragment implements TextWatche
     EditText edt_family_Residents;
     //    EditText edt_Password;
 //    EditText edt_Repeat_Password;
-    EditText edt_number_phone;
+    public EditText edt_number_phone;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +66,9 @@ public class Resident_informationFragment extends Fragment implements TextWatche
 //        edt_Repeat_Password.addTextChangedListener(this);
         String number = Get_number_residentFragment.mobile_number;
         edt_number_phone.setText(number);
+        if (Get_number_residentFragment.shPref.getString("number fix", "").equalsIgnoreCase("ok")) {
+            edt_number_phone.setEnabled(false);
+        }
 
 //        if(number=="" || number==null){
 //            edt_number_phone.setEnabled(false);
@@ -230,7 +233,7 @@ public class Resident_informationFragment extends Fragment implements TextWatche
                 try {
                     String user_id = response.getString("reasonPhrase");
 
-                    shPref.edit().putString("reasonPhrase", user_id).apply();
+                    Get_number_residentFragment.shPref.edit().putString("reasonPhrase", user_id).apply();
                     Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
 
 
