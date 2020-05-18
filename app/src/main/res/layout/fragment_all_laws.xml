@@ -11,20 +11,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        android:layout_centerHorizontal="true" >
+
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_LawOfPossession"
+            style="@style/Button_style_text"
             android:layout_width="280dp"
             android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:clickable="true"
             android:text="قانون تملک آپارتمان ها و ایین نامه اجرایی"
-            livebutton:backgroundColor="#2D9385"
+            livebutton:backgroundColor="@color/colorPrimary"
             livebutton:corners="50dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
-            livebutton:shadowColor="#18443E"
-            style="@style/Button_style_text" />
+            livebutton:shadowColor="#18443E" />
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_Regulations"
@@ -34,7 +34,7 @@
             android:layout_marginTop="150dp"
             android:clickable="true"
             android:text="نمونه فرم های و مصوبات مدیریت ساختمان"
-            livebutton:backgroundColor="#2D9385"
+            livebutton:backgroundColor="@color/colorPrimary"
             livebutton:corners="50dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
@@ -49,7 +49,7 @@
             android:layout_marginTop="250dp"
             android:clickable="true"
             android:text="پرسش و پاسخ آپارتمان نشینی"
-            livebutton:backgroundColor="#2D9385"
+            livebutton:backgroundColor="@color/colorPrimary"
             livebutton:corners="50dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
@@ -64,7 +64,7 @@
             android:layout_marginTop="350dp"
             android:clickable="true"
             android:text="آراء قضایی"
-            livebutton:backgroundColor="#2D9385"
+            livebutton:backgroundColor="@color/colorPrimary"
             livebutton:corners="50dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
@@ -79,7 +79,7 @@
             android:layout_marginTop="450dp"
             android:clickable="true"
             android:text="قوانین و مقررات وب اسکان"
-            livebutton:backgroundColor="#2D9385"
+            livebutton:backgroundColor="@color/colorPrimary"
             livebutton:corners="50dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"

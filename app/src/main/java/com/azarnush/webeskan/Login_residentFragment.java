@@ -121,7 +121,7 @@ public class Login_residentFragment extends Fragment {
                 }
                 if (counter <=0){
 
-                    btn_resend.setBackgroundColor(Color.parseColor("#2D9385"));
+                    btn_resend.setBackgroundColor(Color.parseColor("#00897B"));
                     btn_resend.setEnabled(true);
 
 

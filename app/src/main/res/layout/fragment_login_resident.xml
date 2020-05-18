@@ -55,7 +55,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
                 android:text="تایید"
-                app:backgroundColor="#2D9385"
+                app:backgroundColor="@color/colorPrimary"
                 app:corners="50dp"
                 app:normalHeight="6dp"
                 app:pressedHeight="2dp"
