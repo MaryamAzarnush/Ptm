@@ -64,9 +64,10 @@ public class Resident_informationFragment extends Fragment implements TextWatche
         edt_family_Residents.addTextChangedListener(this);
 //        edt_Password.addTextChangedListener(this);
 //        edt_Repeat_Password.addTextChangedListener(this);
-        String number = Get_number_residentFragment.mobile_number;
-        edt_number_phone.setText(number);
+
         if (Get_number_residentFragment.shPref.getString("number fix", "").equalsIgnoreCase("ok")) {
+            String number = Get_number_residentFragment.mobile_number;
+            edt_number_phone.setText(number);
             edt_number_phone.setEnabled(false);
         }
 

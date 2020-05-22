@@ -3,7 +3,9 @@ package com.azarnush.webeskan;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,21 +54,24 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
     public Boolean validation_number() {
         mobile_number = phone.getText().toString();
 
-        if (mobile_number.equals("")) {
 
+        if (mobile_number.equals("")) {
             Toast.makeText(getContext(), "لطفا شماره را وارد نمایید", Toast.LENGTH_LONG).show();
             return false;
-
-        } else if (mobile_number.length() < number_number) {
+        }
+        if (mobile_number.length() < number_number) {
             Toast.makeText(getContext(), "تعداد ارقام کافی نیست", Toast.LENGTH_LONG).show();
             return false;
-        } else if (!mobile_number.matches("(\\+98|0)?9\\d{9}")) {
+        }
+        if (!mobile_number.matches("(\\+98|0)?9\\d{9}")) {
 
             Toast.makeText(getContext(), "شماره موبایل نامعتبر هست", Toast.LENGTH_SHORT).show();
             return false;
-        } else return true;
-
-
+        }
+        if (!mobile_number.equals("") && !(mobile_number.length() < number_number) && (mobile_number.matches("(\\+98|0)?9\\d{9}"))) {
+            return true;
+        }
+        return null;
     }
 
     public void sendJSONObjectRequest_isRegister1() {
@@ -89,6 +94,7 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
                             Fragment fragment = new Login_residentFragment();
 
                             HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+                            Toast.makeText(getContext(), "شما با این شماره ثبت نام هستید", Toast.LENGTH_LONG).show();
                             break;
                         case "false":
                             shPref.edit().putString("number fix", "ok").apply();
@@ -201,10 +207,15 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
 
             case R.id.btn_register:
                 mobile_number = phone.getText().toString();
-                if (mobile_number.equals("")) {
-                    Fragment fragment2 = new Resident_informationFragment();
-                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment2).commit();
-                } else sendJSONObjectRequest_isRegister2();
+
+                if (validation_number()) {
+                    sendJSONObjectRequest_isRegister1();
+
+                } else {
+                    shPref.edit().putString("number fix", "").apply();
+                    Fragment fragment = new Resident_informationFragment();
+                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+                }
                 break;
         }
     }
