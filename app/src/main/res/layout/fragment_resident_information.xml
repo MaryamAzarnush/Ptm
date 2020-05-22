@@ -60,39 +60,39 @@
         app:rt_borderWidth="2dp"
         app:rt_radius="10dp" />
 
-    <com.ornach.richtext.RichEditText
+    <!--    <com.ornach.richtext.RichEditText-->
 
-        android:id="@+id/edt_Password"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp"
-        android:hint="کلمه عبور"
-        android:inputType="textPassword"
-        android:padding="15dp"
-        android:textColorHint="#B5554A4A"
-        android:textSize="16sp"
-        app:rt_backgroundColor="#fff"
-        app:rt_borderColor="#DF7F8585"
-        app:rt_borderWidth="2dp"
-        app:rt_radius="10dp" />
+    <!--        android:id="@+id/edt_Password"-->
+    <!--        android:layout_width="280dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginTop="260dp"-->
+    <!--        android:hint="کلمه عبور"-->
+    <!--        android:inputType="textPassword"-->
+    <!--        android:padding="15dp"-->
+    <!--        android:textColorHint="#B5554A4A"-->
+    <!--        android:textSize="16sp"-->
+    <!--        app:rt_backgroundColor="#fff"-->
+    <!--        app:rt_borderColor="#DF7F8585"-->
+    <!--        app:rt_borderWidth="2dp"-->
+    <!--        app:rt_radius="10dp" />-->
 
-    <com.ornach.richtext.RichEditText
+    <!--    <com.ornach.richtext.RichEditText-->
 
-        android:id="@+id/edt_Repeat_Password"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
-        android:hint="تکرار کلمه عبور"
-        android:inputType="textPassword"
-        android:padding="15dp"
-        android:textColorHint="#B5554A4A"
-        android:textSize="16sp"
-        app:rt_backgroundColor="#fff"
-        app:rt_borderColor="#DF7F8585"
-        app:rt_borderWidth="2dp"
-        app:rt_radius="10dp" />
+    <!--        android:id="@+id/edt_Repeat_Password"-->
+    <!--        android:layout_width="280dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginTop="330dp"-->
+    <!--        android:hint="تکرار کلمه عبور"-->
+    <!--        android:inputType="textPassword"-->
+    <!--        android:padding="15dp"-->
+    <!--        android:textColorHint="#B5554A4A"-->
+    <!--        android:textSize="16sp"-->
+    <!--        app:rt_backgroundColor="#fff"-->
+    <!--        app:rt_borderColor="#DF7F8585"-->
+    <!--        app:rt_borderWidth="2dp"-->
+    <!--        app:rt_radius="10dp" />-->
 
     <com.ornach.richtext.RichEditText
 
@@ -100,7 +100,7 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="260dp"
         android:hint="ایمیل(اختیاری)"
         android:inputType="textWebEmailAddress"
         android:padding="15dp"
@@ -117,7 +117,7 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="400dp"
         android:layout_marginBottom="20dp"
         android:text="ثبت نام"
         app:backgroundColor="@color/colorPrimary"
