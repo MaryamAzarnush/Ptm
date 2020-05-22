@@ -201,6 +201,10 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
                 mobile_number = phone.getText().toString();
                 if (validation_number()) {
                     sendJSONObjectRequest_isRegister1();
+                } else {
+                    shPref.edit().putString("number fix", "").apply();
+                    Fragment fragment = new Resident_informationFragment();
+                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
                 }
 
                 break;
