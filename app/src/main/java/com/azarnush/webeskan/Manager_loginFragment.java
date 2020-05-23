@@ -1,6 +1,7 @@
 package com.azarnush.webeskan;
 
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
@@ -24,7 +25,10 @@ public class Manager_loginFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_manager_login, container, false);
         HomeActivity.toolbar.setTitle("ورود مدیران");
 
+
         WebView myWebView = root.findViewById(R.id.wv_manager);
+        myWebView.setVerticalScrollBarEnabled(true);
+        myWebView.getSettings().setJavaScriptEnabled(true);
         progressDialog = new ProgressDialog(getContext());
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
@@ -45,6 +49,7 @@ public class Manager_loginFragment extends Fragment {
                 super.onPageFinished(view, url);
             }
         });
+
 
         myWebView.loadUrl("https://manager.webeskan.com/Account");
         return root;

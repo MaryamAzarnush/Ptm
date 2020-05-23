@@ -193,33 +193,25 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
         HomeActivity.toolbar.setTitle("ورود ساکنین");
     }
 
+    private void validat() {
+        mobile_number = phone.getText().toString();
+        if (validation_number()) {
+            sendJSONObjectRequest_isRegister1();
+        } else {
+            shPref.edit().putString("number fix", "").apply();
+            Fragment fragment = new Resident_informationFragment();
+            HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.btn_login:
-                mobile_number = phone.getText().toString();
-                if (validation_number()) {
-                    sendJSONObjectRequest_isRegister1();
-                } else {
-                    shPref.edit().putString("number fix", "").apply();
-                    Fragment fragment = new Resident_informationFragment();
-                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
-                }
-
-                break;
-
             case R.id.btn_register:
-                mobile_number = phone.getText().toString();
+                validat();
 
-                if (validation_number()) {
-                    sendJSONObjectRequest_isRegister1();
-
-                } else {
-                    shPref.edit().putString("number fix", "").apply();
-                    Fragment fragment = new Resident_informationFragment();
-                    HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
-                }
                 break;
         }
     }
