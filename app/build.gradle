@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.azarnush.webeskan"
-        minSdkVersion 23
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -41,7 +41,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.3.3'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
-    implementation 'com.aseem.versatileprogressbar:MultiProgressBar:1.1.0'
+    implementation 'com.github.d-max:spots-dialog:0.7@aar'
+
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

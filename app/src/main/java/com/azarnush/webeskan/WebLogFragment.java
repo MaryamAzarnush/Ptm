@@ -3,8 +3,6 @@ package com.azarnush.webeskan;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,9 +11,10 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import dmax.dialog.SpotsDialog;
 
 public class WebLogFragment extends Fragment {
-    ProgressDialog progressDialog;
+    SpotsDialog dialog;
 
     @Nullable
     @Override
@@ -24,22 +23,21 @@ public class WebLogFragment extends Fragment {
         HomeActivity.toolbar.setTitle("وبلاگ");
 
         WebView myWebView = root.findViewById(R.id.wv_weblog);
-        progressDialog = new ProgressDialog(getContext());
+        dialog = new SpotsDialog(getContext(), R.style.Custom);
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         myWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                progressDialog.setMessage("در حال بارگذاری وبلاگ");
-                progressDialog.setCancelable(true);
-                progressDialog.show();
+                dialog.setCancelable(true);
+               dialog.show();
 
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                progressDialog.dismiss();
+                dialog.dismiss();
 
                 super.onPageFinished(view, url);
             }

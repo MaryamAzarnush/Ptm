@@ -1,24 +1,21 @@
 package com.azarnush.webeskan;
 
-import android.app.ProgressDialog;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import dmax.dialog.SpotsDialog;
 
 public class Manager_loginFragment extends Fragment {
-    ProgressDialog progressDialog;
 
+   SpotsDialog dialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,23 +26,23 @@ public class Manager_loginFragment extends Fragment {
         WebView myWebView = root.findViewById(R.id.wv_manager);
         myWebView.setVerticalScrollBarEnabled(true);
         myWebView.getSettings().setJavaScriptEnabled(true);
-        progressDialog = new ProgressDialog(getContext());
+
+        dialog = new SpotsDialog(getContext(), R.style.Custom);
+
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         myWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                progressDialog.setMessage("در حال بارگذاری");
-                progressDialog.setCancelable(true);
-                progressDialog.show();
 
+               dialog.setCancelable(true);
+                dialog.show();
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                progressDialog.dismiss();
-
+                dialog.dismiss();
                 super.onPageFinished(view, url);
             }
         });
