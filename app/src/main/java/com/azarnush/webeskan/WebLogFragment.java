@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +16,22 @@ import dmax.dialog.SpotsDialog;
 
 public class WebLogFragment extends Fragment {
     SpotsDialog dialog;
-
+    WebView myWebView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_web_log, container, false);
         HomeActivity.toolbar.setTitle("وبلاگ");
 
-        WebView myWebView = root.findViewById(R.id.wv_weblog);
+        myWebView = root.findViewById(R.id.wv_weblog);
         dialog = new SpotsDialog(getContext(), R.style.Custom);
+        dialog.setCancelable(true);
         myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         myWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                dialog.setCancelable(true);
+
                dialog.show();
 
                 super.onPageStarted(view, url, favicon);
@@ -44,6 +46,19 @@ public class WebLogFragment extends Fragment {
         });
 
         myWebView.loadUrl("https://webeskan.com/Blog");
+
+        myWebView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (myWebView.canGoBack()) {
+                        myWebView.goBack();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
         return root;
     }
 
