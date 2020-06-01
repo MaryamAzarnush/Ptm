@@ -23,9 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="مجموع بستانکاری:"
+            android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingLeft="5dp" />
+            android:text="مجموع بستانکاری:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView20"
@@ -53,9 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="مجموع بدهکاری:"
-            android:paddingLeft="5dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView26"

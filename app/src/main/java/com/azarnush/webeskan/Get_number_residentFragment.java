@@ -94,11 +94,11 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
                             Fragment fragment = new Login_residentFragment();
 
                             HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
-                            Toast.makeText(getContext(), "شما با این شماره ثبت نام هستید", Toast.LENGTH_LONG).show();
+                            // Toast.makeText(getContext(), "شما با این شماره ثبت نام هستید", Toast.LENGTH_LONG).show();
                             break;
                         case "false":
                             shPref.edit().putString("number fix", "ok").apply();
-                            Toast.makeText(getContext(), "لطفا ابتدا ثبت نام کنید", Toast.LENGTH_LONG).show();
+                            // Toast.makeText(getContext(), "لطفا ابتدا ثبت نام کنید", Toast.LENGTH_LONG).show();
                             Fragment fragment2 = new Resident_informationFragment();
                             HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment2).commit();
 
@@ -146,7 +146,7 @@ public class Get_number_residentFragment extends Fragment implements View.OnClic
                         case "null":
                             sendJSONObjectRequest_isRegister2();
                         case "true":
-                            Toast.makeText(getContext(), "شما با این شماره ثبت نام هستید", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getContext(), "شما با این شماره ثبت نام هستید", Toast.LENGTH_LONG).show();
                             shPref.edit().putString("Mobile", mobile_number).apply();
 
                             Fragment fragment = new Login_residentFragment();
