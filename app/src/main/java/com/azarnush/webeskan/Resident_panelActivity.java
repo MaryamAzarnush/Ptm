@@ -100,7 +100,7 @@ public class Resident_panelActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }else {
+        } else if (toolbar.getTitle() == "واحدهای شما") {
             AlertDialog.Builder builder = new AlertDialog.Builder(Resident_panelActivity.this);
             builder.setTitle(R.string.app_name);
             builder.setIcon(R.drawable.logo);
@@ -124,6 +124,9 @@ public class Resident_panelActivity extends AppCompatActivity {
             alert.show();
 
 
-        }
+        } else if (toolbar.getTitle() == "پنل ساکن") {
+            Fragment fragment = new Resident_panelFragment();
+            fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).commit();
+        } else super.onBackPressed();
     }
 }
