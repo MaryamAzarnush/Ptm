@@ -95,8 +95,10 @@ public class Resident_panelFragment extends Fragment {
                 // Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
 
                 try {
+                    if (response.length() == 0) {
+                        textView.setText("شما واحد ثبت شده ندارید لطفا ثبت نمایید");
+                    }
                     units.clear();
-
 
                     for (int i = 0; i < response.length(); i++) {
 
@@ -110,6 +112,7 @@ public class Resident_panelFragment extends Fragment {
                         Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
 
                     }
+
                     adapter.notifyDataSetChanged();
 
                 } catch (Exception e) {
@@ -122,10 +125,8 @@ public class Resident_panelFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                sendJsonArrayRequest_get_units();
 
-                units.clear();
-                adapter.notifyDataSetChanged();
-                textView.setText("شما واحد ثبت شده ندارید لطفا ثبت نمایید");
             }
         };
 
@@ -133,5 +134,6 @@ public class Resident_panelFragment extends Fragment {
         request.setRetryPolicy(new DefaultRetryPolicy(1000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
+
     }
 }
