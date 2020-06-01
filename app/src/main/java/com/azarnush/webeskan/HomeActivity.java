@@ -2,6 +2,7 @@ package com.azarnush.webeskan;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -110,6 +111,14 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_contactUs:
                         fragment = new ContactUsFragment();
+                        break;
+                    case R.id.nav_share:
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "YOUR_LINK");
+                        sendIntent.setType("text/plain");
+                        startActivity(sendIntent);
+                        fragment = new HomeFragment();
                         break;
                     case R.id.nav_exit:
                         finish();
