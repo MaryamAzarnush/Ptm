@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -37,6 +38,7 @@ public class Resident_panelActivity extends AppCompatActivity {
     TextView textView_name;
     TextView textView_number;
    public static Toolbar toolbar;
+    public static FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class Resident_panelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resident_panel);
          toolbar = findViewById(R.id.toolbar_resident);
         setSupportActionBar(toolbar);
+        fragmentManager = getSupportFragmentManager();
 
         drawer = findViewById(R.id.drawer_layout_resident);
         navigationView = findViewById(R.id.nav_view_resident);
