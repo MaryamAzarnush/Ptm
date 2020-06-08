@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,9 +72,8 @@ public class Resident_panelFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-        sendJsonArrayRequest_get_units();
-        // setData();
 
+        sendJsonArrayRequest_get_units();
 
         return root;
     }
@@ -83,6 +83,12 @@ public class Resident_panelFragment extends Fragment {
         super.onResume();
         Resident_panelActivity.toolbar.setTitle("واحدهای شما");
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        sendJsonArrayRequest_get_units();
     }
 
     public void sendJsonArrayRequest_get_units() {
@@ -97,8 +103,15 @@ public class Resident_panelFragment extends Fragment {
                 // Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
 
                 try {
+                    if (response == null || response.toString() == "") {
+                        textView.setText("null");
+                    }
+
                     if (response.length() == 0) {
                         textView.setText("شما واحد ثبت شده ندارید لطفا ثبت نمایید");
+                    }
+                    if (response.toString().equalsIgnoreCase("کاربری با این مشخصات یافت نشد")) {
+                        textView.setText("کاربری با این مشخصات یافت نشد");
                     }
                     units.clear();
 
@@ -112,7 +125,6 @@ public class Resident_panelFragment extends Fragment {
 
                         units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle));
                         Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
-
                     }
 
                     adapter.notifyDataSetChanged();
@@ -127,13 +139,12 @@ public class Resident_panelFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                sendJsonArrayRequest_get_units();
-
+                textView.setText(error.getMessage());
             }
         };
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
-        request.setRetryPolicy(new DefaultRetryPolicy(1000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        request.setRetryPolicy(new DefaultRetryPolicy(500, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
 
