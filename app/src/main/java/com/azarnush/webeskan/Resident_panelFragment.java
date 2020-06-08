@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,16 +66,19 @@ public class Resident_panelFragment extends Fragment {
         });
         textView = root.findViewById(R.id.textView19);
 
-
         recyclerView = root.findViewById(R.id.recycler_units);
 
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                sendJsonArrayRequest_get_units();
+            }
+        });
 
         adapter = new UnitsAdapter(units);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
-        sendJsonArrayRequest_get_units();
 
         return root;
     }
@@ -82,12 +87,6 @@ public class Resident_panelFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Resident_panelActivity.toolbar.setTitle("واحدهای شما");
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         sendJsonArrayRequest_get_units();
     }
 
@@ -100,15 +99,15 @@ public class Resident_panelFragment extends Fragment {
 
             @Override
             public void onResponse(JSONArray response) {
-                // Toast.makeText(getContext(), user_id, Toast.LENGTH_LONG).show();
 
                 try {
-                    if (response == null || response.toString() == "") {
-                        textView.setText("null");
-                    }
 
                     if (response.length() == 0) {
+                        units.clear();
+                        adapter.notifyDataSetChanged();
                         textView.setText("شما واحد ثبت شده ندارید لطفا ثبت نمایید");
+
+                        return;
                     }
                     if (response.toString().equalsIgnoreCase("کاربری با این مشخصات یافت نشد")) {
                         textView.setText("کاربری با این مشخصات یافت نشد");
@@ -118,8 +117,6 @@ public class Resident_panelFragment extends Fragment {
                     for (int i = 0; i < response.length(); i++) {
 
                         JSONObject object = response.getJSONObject(i);
-
-
                         String buildingTitle = object.getString("buildingTitle");
                         String unitTitle = object.getString("unitTitle");
 
@@ -128,9 +125,10 @@ public class Resident_panelFragment extends Fragment {
                     }
 
                     adapter.notifyDataSetChanged();
+                    textView.setText("");
 
                 } catch (Exception e) {
-                    textView.setText(e.toString());
+                    //textView.setText(e.toString());
                 }
             }
         };
@@ -139,7 +137,7 @@ public class Resident_panelFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                textView.setText(error.getMessage());
+                //textView.setText(error.getMessage());
             }
         };
 
