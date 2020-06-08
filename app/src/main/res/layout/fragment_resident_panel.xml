@@ -67,7 +67,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_units"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/lineare" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,7 +78,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:clickable="true"
-        android:src="@drawable/ic_add_circle_black_24dp" />
+        android:foreground="@drawable/ic_add_circle_black_24dp" />
 
     <TextView
         android:id="@+id/textView19"

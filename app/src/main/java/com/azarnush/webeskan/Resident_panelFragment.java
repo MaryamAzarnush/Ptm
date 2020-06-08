@@ -1,19 +1,25 @@
 package com.azarnush.webeskan;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +84,8 @@ public class Resident_panelFragment extends Fragment {
         adapter = new UnitsAdapter(units);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_bottom);
+        recyclerView.setAnimation(animation);
         recyclerView.setAdapter(adapter);
 
         return root;
@@ -89,6 +97,7 @@ public class Resident_panelFragment extends Fragment {
         Resident_panelActivity.toolbar.setTitle("واحدهای شما");
         sendJsonArrayRequest_get_units();
     }
+
 
     public void sendJsonArrayRequest_get_units() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -121,7 +130,7 @@ public class Resident_panelFragment extends Fragment {
                         String unitTitle = object.getString("unitTitle");
 
                         units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle));
-                        Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
                     }
 
                     adapter.notifyDataSetChanged();

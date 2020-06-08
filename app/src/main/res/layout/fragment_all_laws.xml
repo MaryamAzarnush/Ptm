@@ -21,6 +21,7 @@
             android:clickable="true"
             android:text="قانون تملک آپارتمان ها و ایین نامه اجرایی"
             livebutton:backgroundColor="@color/colorPrimary"
+            android:layout_centerHorizontal="true"
             livebutton:corners="50dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
