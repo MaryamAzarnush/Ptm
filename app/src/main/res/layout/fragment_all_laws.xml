@@ -15,7 +15,7 @@
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_LawOfPossession"
             style="@style/Button_style_text"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
             android:clickable="true"
@@ -29,7 +29,7 @@
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_Regulations"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
@@ -44,7 +44,7 @@
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_question_and_answer"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="250dp"
@@ -59,7 +59,7 @@
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_votes"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="350dp"
@@ -74,7 +74,7 @@
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_Rules_webeskan"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="450dp"
