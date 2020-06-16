@@ -66,8 +66,7 @@ public class Resident_panelFragment extends Fragment {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                Fragment fragment = new Resident_boardFragment();
-                Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
+
             }
         });
         textView = root.findViewById(R.id.textView19);
