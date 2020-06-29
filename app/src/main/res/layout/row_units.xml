@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/container_units"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_margin="5dp"
         android:background="@drawable/back_textview"
         android:backgroundTint="#80CBC4"
@@ -45,25 +45,17 @@
             android:text="TextView"
             android:textSize="20dp" />
 
-        <ru.katso.livebutton.LiveButton
+        <TextView
             android:id="@+id/btn_incoming_resident"
-            style="@style/Button_style_text"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
-
-            android:clickable="true"
             android:text="در انتظار تایید مدیر "
-            android:textSize="14sp"
-            livebutton:backgroundColor="@color/colorPrimary"
-            livebutton:corners="20dp"
-            livebutton:normalHeight="6dp"
-            livebutton:pressedHeight="2dp"
-            livebutton:shadowColor="#18443E" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
