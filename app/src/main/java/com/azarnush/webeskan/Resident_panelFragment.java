@@ -124,12 +124,17 @@ public class Resident_panelFragment extends Fragment {
 
                     for (int i = 0; i < response.length(); i++) {
 
-                        JSONObject object = response.getJSONObject(i);
-                        String buildingTitle = object.getString("buildingTitle");
-                        String unitTitle = object.getString("unitTitle");
+                        try {
+                            JSONObject object = response.getJSONObject(i);
+                            String buildingTitle = object.getString("buildingTitle");
+                            String unitTitle = object.getString("unitTitle");
+                            Integer residenceRefId = object.getInt("residenceRefId");
+                            units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle, residenceRefId));
+                            // Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
+                        }
 
-                        units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle));
-                        // Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
                     }
 
                     adapter.notifyDataSetChanged();

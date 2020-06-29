@@ -20,6 +20,7 @@ import java.util.List;
 public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHolder> {
 
     List<Unit> units;
+    public static Integer residenceRefId;
 
     public UnitsAdapter(List<Unit> units) {
         this.units = units;
@@ -33,15 +34,17 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UnitViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UnitViewHolder holder, final int position) {
         Unit unit = units.get(position);
 
         holder.txt_auto_number.setText(unit.getAuto_number());
         holder.txt_buildingTitle.setText(unit.getBuildingTitle());
         holder.txt_unitTitle.setText(unit.getUnitTitle());
+
         holder.container_units.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                residenceRefId = units.get(position).getResidenceRefId();
                 Fragment fragment = new Resident_boardFragment();
                 Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
             }
