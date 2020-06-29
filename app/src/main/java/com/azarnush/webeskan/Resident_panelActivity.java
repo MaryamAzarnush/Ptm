@@ -72,6 +72,10 @@ public class Resident_panelActivity extends AppCompatActivity {
                         startActivity(new Intent(Resident_panelActivity.this, HomeActivity.class));
                         finish();
                         break;
+                    case R.id.nav_settings:
+                        Fragment fragment = new ProfileFragment();
+                        Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).commit();
+                        break;
                     case R.id.nav_exit_resident:
                         finish();
                         break;
