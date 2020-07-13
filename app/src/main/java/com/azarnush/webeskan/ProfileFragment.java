@@ -38,6 +38,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Resident_panelActivity.toolbar.setTitle("تنطیمات");
+        Resident_panelActivity.toolbar.setTitle("تنطیمات پروفایل");
     }
 }

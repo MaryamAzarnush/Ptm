@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="تنظیمات" />
+            android:title="تنظیمات پروفایل" />
         <item
             android:id="@+id/nav_exit_resident"
             android:icon="@drawable/ic_exit_to_app_black_24dp"

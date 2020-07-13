@@ -71,7 +71,7 @@ public class Resident_boardFragment extends Fragment {
         };
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
-        request.setRetryPolicy(new DefaultRetryPolicy(500, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        request.setRetryPolicy(new DefaultRetryPolicy(8000, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
 
