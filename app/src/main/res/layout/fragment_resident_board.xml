@@ -29,7 +29,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/total_Credit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -60,7 +60,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/total_debt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -88,7 +88,7 @@
             android:padding="5dp" />
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/announcements"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="TextView"
@@ -114,7 +114,7 @@
             android:layout_gravity="center_vertical" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/your_credit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -147,7 +147,7 @@
             android:text="آخرین پرداختی ها ..." />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/the_latest_payments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -179,7 +179,7 @@
             android:text="بدهی ها ..." />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/debts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
