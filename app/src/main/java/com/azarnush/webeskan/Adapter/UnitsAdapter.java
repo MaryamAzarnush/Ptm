@@ -21,6 +21,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
 
     List<Unit> units;
     public static Integer residenceRefId;
+    public static String building_NameAndUnit;
 
     public UnitsAdapter(List<Unit> units) {
         this.units = units;
@@ -35,7 +36,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
 
     @Override
     public void onBindViewHolder(@NonNull UnitViewHolder holder, final int position) {
-        Unit unit = units.get(position);
+        final Unit unit = units.get(position);
 
         holder.txt_auto_number.setText(unit.getAuto_number());
         holder.txt_buildingTitle.setText(unit.getBuildingTitle());
@@ -45,6 +46,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
             @Override
             public void onClick(View v) {
                 residenceRefId = units.get(position).getResidenceRefId();
+                building_NameAndUnit = unit.getBuildingTitle() + " " + unit.getUnitTitle();
                 Fragment fragment = new Resident_boardFragment2();
                 Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
             }
