@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.azarnush.webeskan.R;
-import com.azarnush.webeskan.Resident_boardFragment;
+import com.azarnush.webeskan.Resident_boardFragment2;
 import com.azarnush.webeskan.Resident_panelActivity;
 import com.azarnush.webeskan.models.Unit;
 
@@ -45,7 +45,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
             @Override
             public void onClick(View v) {
                 residenceRefId = units.get(position).getResidenceRefId();
-                Fragment fragment = new Resident_boardFragment();
+                Fragment fragment = new Resident_boardFragment2();
                 Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
             }
         });
