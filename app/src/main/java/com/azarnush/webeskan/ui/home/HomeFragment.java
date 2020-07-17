@@ -13,13 +13,12 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.azarnush.webeskan.All_lawsFragment;
+import com.azarnush.webeskan.Laws.All_lawsFragment;
 import com.azarnush.webeskan.Get_number_residentFragment;
 import com.azarnush.webeskan.HomeActivity;
 import com.azarnush.webeskan.Manager_loginFragment;
 import com.azarnush.webeskan.R;
 import com.azarnush.webeskan.Resident_panelActivity;
-import com.azarnush.webeskan.Resident_panelFragment;
 import com.azarnush.webeskan.WebLogFragment;
 
 public class HomeFragment extends Fragment {

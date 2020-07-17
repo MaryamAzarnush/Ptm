@@ -3,7 +3,6 @@ package com.azarnush.webeskan;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -27,6 +26,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.azarnush.webeskan.Laws.All_lawsFragment;
+import com.azarnush.webeskan.Laws.Question_and_answerFragment;
 import com.azarnush.webeskan.ui.home.HomeFragment;
 import com.azarnush.webeskan.ui.tools.AboutـusFragment;
 import com.google.android.material.navigation.NavigationView;

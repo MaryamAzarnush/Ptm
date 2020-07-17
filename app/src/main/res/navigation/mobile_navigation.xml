@@ -13,12 +13,12 @@
 
     <fragment
         android:id="@+id/nav_all_laws"
-        android:name="com.azarnush.webeskan.All_lawsFragment"
+        android:name="com.azarnush.webeskan.Laws.All_lawsFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_all_laws" />
     <fragment
         android:id="@+id/nav_law_of_possession"
-        android:name="com.azarnush.webeskan.Law_of_PossessionFragment"
+        android:name="com.azarnush.webeskan.Laws.Law_of_PossessionFragment"
         android:label="قانون تملک"
         tools:layout="@layout/fragment_law_of__possession" />
     <fragment
