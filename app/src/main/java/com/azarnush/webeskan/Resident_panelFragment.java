@@ -73,12 +73,12 @@ public class Resident_panelFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.recycler_units);
 
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                sendJsonArrayRequest_get_units();
-            }
-        });
+//        new Handler().post(new Runnable() {
+//            @Override
+//            public void run() {
+//                sendJsonArrayRequest_get_units();
+//            }
+//        });
 
         adapter = new UnitsAdapter(units);
 

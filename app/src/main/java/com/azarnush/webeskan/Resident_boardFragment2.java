@@ -3,6 +3,7 @@ package com.azarnush.webeskan;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,23 +23,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.azarnush.webeskan.Adapter.ResidentPanel.Debts_adapter;
 import com.azarnush.webeskan.Adapter.UnitsAdapter;
+import com.azarnush.webeskan.models.ResidentPanel.Debt;
 import com.azarnush.webeskan.models.Unit;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Resident_boardFragment2 extends Fragment {
     View root;
     public static JSONObject responsee;
     TextView building_NameAndUnit;
     TextView total_debt, total_Credit, your_credit;
     RecyclerView debts, the_latest_payments, announcements;
+    private Debts_adapter debts_adapter;
+    public static List<Debt> debtList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +56,11 @@ public class Resident_boardFragment2 extends Fragment {
             @Override
             public void run() {
                 sendJsonObjectRequest_getResidenceDashboard();
+
+                debts_adapter = new Debts_adapter(debtList);
+                debts.setLayoutManager(new LinearLayoutManager(getActivity()));
+                debts.setAdapter(debts_adapter);
+
             }
         });
         return root;
@@ -108,7 +119,7 @@ public class Resident_boardFragment2 extends Fragment {
                 JSONArray jsonArray = responsee.getJSONArray("boardList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Log.i("ptm", jsonObject.toString());
+                    //Log.i("ptm", jsonObject.toString());
                 }
             }
         } catch (JSONException e) {
@@ -130,9 +141,14 @@ public class Resident_boardFragment2 extends Fragment {
             if (responsee.getJSONArray("debtList").length() != 0) {
                 JSONArray jsonArray = responsee.getJSONArray("debtList");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Log.i("ptm", jsonObject.toString());
+                    JSONObject jo = jsonArray.getJSONObject(i);
+                    // Log.i("ptm", jo.toString());
+                    Debt debt = new Debt(jo.getBoolean("checkedDebt"), jo.getInt("actionType"), jo.getInt("debtId"),
+                            jo.getDouble("payableDebtAmount"), jo.getDouble("debtAmount"), jo.getString("debtDate"),
+                            jo.getString("debtTitle"), jo.getInt("residenceId"));
+                    debtList.add(debt);
                 }
+                debts_adapter.notifyDataSetChanged();
             }
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
@@ -169,5 +185,7 @@ public class Resident_boardFragment2 extends Fragment {
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }
+
+
     }
 }

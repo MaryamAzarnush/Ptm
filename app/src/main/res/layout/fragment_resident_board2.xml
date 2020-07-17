@@ -213,25 +213,24 @@
                     <CheckBox
                         android:id="@+id/checkBox"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/textView43"
+                        android:id="@+id/debtTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:text="عنوان بدهی" />
 
                     <TextView
-                        android:id="@+id/textView44"
+                        android:id="@+id/payableDebtAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
                         android:text="مبلغ قابل پرداخت" />
 
                     <TextView
-                        android:id="@+id/textView45"
+                        android:id="@+id/debtDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -254,6 +253,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal">
 
@@ -269,6 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
+                        android:gravity="center_horizontal"
                         android:text="TextView" />
 
                     <TextView
