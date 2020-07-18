@@ -18,7 +18,8 @@
         android:id="@+id/debtTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3" />
+        android:layout_weight="0.3"
+        android:textColor="#2E7D32" />
 
     <TextView
         android:id="@+id/payableDebtAmount"
@@ -32,5 +33,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
-        android:gravity="left" />
+        android:gravity="left"
+        android:textColor="#2E7D32" />
 </LinearLayout>
