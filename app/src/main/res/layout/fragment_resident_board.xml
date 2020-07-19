@@ -227,7 +227,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                       android:id="@+id/ch_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -285,13 +285,12 @@
                         android:textColor="#5C6BC0" />
 
                     <TextView
-                        android:id="@+id/textView47"
+                        android:id="@+id/txt_sum"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:text="TextView"
                         android:textColor="#5C6BC0" />
 
                     <TextView

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,25 +26,25 @@ import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.Adapter.ResidentPanel.Debts_adapter;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Resident_boardFragment extends Fragment {
     View root;
     public static JSONObject responsee;
+    public static TextView txt_sum;
     TextView building_NameAndUnit;
     TextView total_debt, total_Credit, your_credit;
     RecyclerView debts, the_latest_payments, announcements;
     private Debts_adapter debts_adapter;
     public static List<Debt> debtList = new ArrayList<>();
+    public static CheckBox ch_all;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_resident_board, container, false);
@@ -60,6 +62,24 @@ public class Resident_boardFragment extends Fragment {
 
             }
         });
+        ch_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    for (int i = 0; i < debtList.size(); i++) {
+                        debtList.get(i).setCheckDebt(true);
+                        Log.i("ptm", String.valueOf(debtList.get(i).isCheckDebt()));
+                    }
+                } else {
+                    for (int i = 0; i < debtList.size(); i++) {
+                        debtList.get(i).setCheckDebt(false);
+                        Log.i("ptm", String.valueOf(debtList.get(i).isCheckDebt()));
+                    }
+                }
+                debts_adapter.notifyDataSetChanged();
+            }
+        });
         return root;
     }
 
@@ -71,6 +91,8 @@ public class Resident_boardFragment extends Fragment {
         your_credit = root.findViewById(R.id.your_credit);
         the_latest_payments = root.findViewById(R.id.the_latest_payments);
         debts = root.findViewById(R.id.debts);
+        ch_all = root.findViewById(R.id.ch_all);
+        txt_sum = root.findViewById(R.id.txt_sum);
 
     }
 
@@ -83,8 +105,8 @@ public class Resident_boardFragment extends Fragment {
 
     public void sendJsonObjectRequest_getResidenceDashboard() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        ////+ UnitsAdapter.residenceRefId
-        String url = "http://api.webeskan.com/api/v1/residence/dashboard/93";
+        ////93
+        String url = "http://api.webeskan.com/api/v1/residence/dashboard/" + UnitsAdapter.residenceRefId;
 
         Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
 
@@ -92,7 +114,6 @@ public class Resident_boardFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 responsee = response;
                 parseResponse();
-
             }
         };
 
@@ -107,7 +128,6 @@ public class Resident_boardFragment extends Fragment {
         request.setRetryPolicy(new DefaultRetryPolicy(8000, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
-
     }
 
     public void parseResponse() {
@@ -183,7 +203,5 @@ public class Resident_boardFragment extends Fragment {
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }
-
-
     }
 }
