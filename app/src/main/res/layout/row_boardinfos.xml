@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:livebutton="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/board_number"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="0.2"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/board_title"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="0.5"
+        android:gravity="center_horizontal" />
+
+    <ru.katso.livebutton.LiveButton
+        android:id="@+id/operation"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.3"
+        android:gravity="center_horizontal"
+        android:text="جزئیات"
+        livebutton:backgroundColor="@color/colorPrimary"
+        livebutton:corners="50dp"
+        livebutton:normalHeight="6dp"
+        livebutton:pressedHeight="2dp"
+        livebutton:shadowColor="#18443E" />
+</LinearLayout>

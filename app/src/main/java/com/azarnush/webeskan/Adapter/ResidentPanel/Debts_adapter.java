@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Debts_adapter extends RecyclerView.Adapter<Debts_adapter.DebtViewHolder> {
     List<Debt> debtsList;
-    Double sum_selected_debts = 0.0;
+    public static Double sum_selected_debts = 0.0;
 
     public Debts_adapter(List<Debt> debtsList) {
         this.debtsList = debtsList;

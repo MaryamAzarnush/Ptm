@@ -23,8 +23,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.azarnush.webeskan.Adapter.ResidentPanel.BoardInfos_adapter;
 import com.azarnush.webeskan.Adapter.ResidentPanel.Debts_adapter;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
+import com.azarnush.webeskan.models.ResidentPanel.BoardInfo;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +44,8 @@ public class Resident_boardFragment extends Fragment {
     private Debts_adapter debts_adapter;
     public static List<Debt> debtList = new ArrayList<>();
     public static CheckBox ch_all;
+    public static List<BoardInfo> boardList = new ArrayList<>();
+    private BoardInfos_adapter boardInfos_adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -59,6 +63,11 @@ public class Resident_boardFragment extends Fragment {
                 debts_adapter = new Debts_adapter(debtList);
                 debts.setLayoutManager(new LinearLayoutManager(getActivity()));
                 debts.setAdapter(debts_adapter);
+
+                boardInfos_adapter = new BoardInfos_adapter(boardList);
+                announcements.setLayoutManager(new LinearLayoutManager(getActivity()));
+                announcements.setAdapter(boardInfos_adapter);
+
 
             }
         });
@@ -97,10 +106,20 @@ public class Resident_boardFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        ch_all.setChecked(false);
+        Debts_adapter.sum_selected_debts = 0.0;
+        debtList.clear();
+        boardList.clear();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         Resident_panelActivity.toolbar.setTitle("پنل ساکن");
         building_NameAndUnit.setText(UnitsAdapter.building_NameAndUnit);
+
     }
 
     public void sendJsonObjectRequest_getResidenceDashboard() {
@@ -114,6 +133,7 @@ public class Resident_boardFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 responsee = response;
                 parseResponse();
+                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
             }
         };
 
@@ -133,11 +153,18 @@ public class Resident_boardFragment extends Fragment {
     public void parseResponse() {
         try {
             if (responsee.getJSONArray("boardList").length() != 0) {
+                boardList.clear();
                 JSONArray jsonArray = responsee.getJSONArray("boardList");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    //Log.i("ptm", jsonObject.toString());
+                    JSONObject jo = jsonArray.getJSONObject(i);
+                    Log.i("ptm", jo.toString());
+                    BoardInfo boardInfo = new BoardInfo(jo.getInt("boardId"), jo.getString("boardTitle"),
+                            jo.getString("boardDescription"), jo.getString("registerDate"),
+                            jo.getString("expireDate"), jo.getString("boardPhoto"), jo.getString("senderUserName"),
+                            jo.getString("boardGroup"));
+                    boardList.add(boardInfo);
                 }
+                boardInfos_adapter.notifyDataSetChanged();
             }
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
