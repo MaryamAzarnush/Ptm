@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -46,6 +47,8 @@ public class Resident_boardFragment extends Fragment {
     public static CheckBox ch_all;
     public static List<BoardInfo> boardList = new ArrayList<>();
     private BoardInfos_adapter boardInfos_adapter;
+    Button btn_payment;
+    public static String sum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -102,6 +105,18 @@ public class Resident_boardFragment extends Fragment {
         debts = root.findViewById(R.id.debts);
         ch_all = root.findViewById(R.id.ch_all);
         txt_sum = root.findViewById(R.id.txt_sum);
+        btn_payment = root.findViewById(R.id.btn_payment);
+        btn_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sum = txt_sum.getText().toString();
+                if (sum != "" && Double.valueOf(sum) != 0.0) {
+                    Fragment fragment = new PaymentFragment();
+                    Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
+                }
+
+            }
+        });
 
     }
 

@@ -1,6 +1,8 @@
 package com.azarnush.webeskan;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.azarnush.webeskan.ui.home.HomeFragment;
 
 import dmax.dialog.SpotsDialog;
 
@@ -52,19 +56,25 @@ public class Manager_loginFragment extends Fragment {
             }
         });
 
-        myWebView.loadUrl("https://manager.webeskan.com/Account");
-        myWebView.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    if (myWebView.canGoBack()) {
-                        myWebView.goBack();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
+//        myWebView.loadUrl("https://manager.webeskan.com/Account");
+//        myWebView.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (keyCode == KeyEvent.KEYCODE_BACK) {
+//                    if (myWebView.canGoBack()) {
+//                        myWebView.goBack();
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https:manager.webeskan.com/Account"));
+        i.setPackage("com.android.chrome");
+        startActivity(i);
+        Fragment fragment = new HomeFragment();
+        HomeActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).addToBackStack(null).commit();
+
 
         return root;
     }
