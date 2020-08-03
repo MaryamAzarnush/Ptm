@@ -133,7 +133,7 @@ public class Resident_boardFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 responsee = response;
                 parseResponse();
-                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
             }
         };
 
