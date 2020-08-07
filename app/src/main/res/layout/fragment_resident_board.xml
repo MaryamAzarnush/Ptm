@@ -27,7 +27,7 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="داشبرد : "
+                android:text="داشبورد : "
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -36,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="TextView"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -61,7 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="مجموع بدهکاری" />
+                    android:text="مجموع بدهکاری"
+                    android:textColor="@color/colorBlack" />
 
                 <TextView
                     android:id="@+id/total_debt"
@@ -89,7 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            card_view:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,7 +103,8 @@
                     android:id="@+id/textView35"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="مجموع بستانکاری" />
+                    android:text="مجموع بستانکاری"
+                    android:textColor="@color/colorBlack" />
 
                 <TextView
                     android:id="@+id/total_Credit"
@@ -130,7 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            card_view:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,7 +146,8 @@
                     android:id="@+id/textView37"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="اعتبار شما" />
+                    android:text="اعتبار جاری شما"
+                    android:textColor="@color/colorBlack" />
 
                 <TextView
                     android:id="@+id/your_credit"
@@ -170,7 +174,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            card_view:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -229,7 +234,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                       android:id="@+id/ch_all"
+                        android:id="@+id/ch_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -317,7 +322,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            card_view:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -370,7 +376,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            card_view:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -60,7 +60,7 @@ public class Resident_boardFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_resident_board, container, false);
         initViews();
         Resident_panelActivity.toolbar.setTitle("پنل ساکن");
-        Toast.makeText(getContext(), UnitsAdapter.residenceRefId.toString(), Toast.LENGTH_LONG).show();
+       // Toast.makeText(getContext(), UnitsAdapter.residenceRefId.toString(), Toast.LENGTH_LONG).show();
         new Handler().post(new Runnable() {
             @Override
             public void run() {
