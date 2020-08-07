@@ -71,22 +71,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="240dp"
-        android:layout_weight="1"
-        android:text="TextView"
         android:textColor="@color/colorBlack" />
 
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="480dp"
         android:spinnerMode="dropdown" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="550dp"
         android:spinnerMode="dropdown" />
@@ -95,7 +93,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="620dp"
         android:text="اتصال به درگاه بانک"
         android:textColor="@color/colorBlack"
         livebutton:backgroundColor="@color/colorPrimary"

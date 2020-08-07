@@ -35,6 +35,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 public class Resident_boardFragment extends Fragment {
     View root;
     public static JSONObject responsee;
@@ -49,6 +51,7 @@ public class Resident_boardFragment extends Fragment {
     private BoardInfos_adapter boardInfos_adapter;
     Button btn_payment;
     public static String sum;
+    public static Realm realm = Realm.getDefaultInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -92,6 +95,9 @@ public class Resident_boardFragment extends Fragment {
                 debts_adapter.notifyDataSetChanged();
             }
         });
+
+
+
         return root;
     }
 
@@ -123,6 +129,13 @@ public class Resident_boardFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
+        realm.beginTransaction();
+        for (int i = 0; i < debtList.size(); i++) {
+            realm.copyToRealm(debtList.get(i));
+        }
+        realm.commitTransaction();
+
         ch_all.setChecked(false);
         Debts_adapter.sum_selected_debts = 0.0;
         debtList.clear();
@@ -172,7 +185,7 @@ public class Resident_boardFragment extends Fragment {
                 JSONArray jsonArray = responsee.getJSONArray("boardList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jo = jsonArray.getJSONObject(i);
-                    Log.i("ptm", jo.toString());
+                   // Log.i("ptm", jo.toString());
                     BoardInfo boardInfo = new BoardInfo(jo.getInt("boardId"), jo.getString("boardTitle"),
                             jo.getString("boardDescription"), jo.getString("registerDate"),
                             jo.getString("expireDate"), jo.getString("boardPhoto"), jo.getString("senderUserName"),
@@ -190,7 +203,7 @@ public class Resident_boardFragment extends Fragment {
                 JSONArray jsonArray = responsee.getJSONArray("receiveList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Log.i("ptm", jsonObject.toString());
+                   // Log.i("ptm", jsonObject.toString());
                 }
             }
         } catch (JSONException e) {
@@ -209,6 +222,8 @@ public class Resident_boardFragment extends Fragment {
                     debtList.add(debt);
                 }
                 debts_adapter.notifyDataSetChanged();
+
+
             }
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
@@ -218,7 +233,7 @@ public class Resident_boardFragment extends Fragment {
                 JSONArray jsonArray = responsee.getJSONArray("creditList");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Log.i("ptm", jsonObject.toString());
+                  //  Log.i("ptm", jsonObject.toString());
                 }
             }
         } catch (JSONException e) {
@@ -227,21 +242,21 @@ public class Resident_boardFragment extends Fragment {
         try {
             Double debtorAmount = responsee.getDouble("debtorAmount");
             total_debt.setText(String.valueOf(debtorAmount));
-            Log.i("ptm", String.valueOf(debtorAmount));
+           // Log.i("ptm", String.valueOf(debtorAmount));
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }
         try {
             Double creditorAmount = responsee.getDouble("creditorAmount");
             total_Credit.setText(String.valueOf(creditorAmount));
-            Log.i("ptm", String.valueOf(creditorAmount));
+           // Log.i("ptm", String.valueOf(creditorAmount));
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }
         try {
             Double cashAmount = responsee.getDouble("cashAmount");
             your_credit.setText(String.valueOf(cashAmount));
-            Log.i("ptm", String.valueOf(cashAmount));
+          //  Log.i("ptm", String.valueOf(cashAmount));
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }

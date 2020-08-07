@@ -1,6 +1,8 @@
 package com.azarnush.webeskan.models.ResidentPanel;
 
-public class Debt {
+import io.realm.RealmObject;
+
+public class Debt extends RealmObject {
     public boolean checkDebt;
     public int actionType;
     public int debtId;
@@ -9,6 +11,9 @@ public class Debt {
     public String debtDate;
     public String debtTitle;
     public int residenceId;
+
+    public Debt() {
+    }
 
     public Debt(boolean checkDebt, int actionType, int debtId, double payableDebtAmount, double debtAmount, String debtDate, String debtTitle, int residenceId) {
         this.checkDebt = checkDebt;

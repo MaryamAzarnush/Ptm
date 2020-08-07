@@ -14,10 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.azarnush.webeskan.models.Laws.LawInfo2;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.RealmResults;
 
 public class PaymentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     View view;
@@ -34,17 +37,22 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
         txt_sum_pay = view.findViewById(R.id.txt_sum_pay);
         txt_show_debts = view.findViewById(R.id.txt_show_debts);
         txt_sum_pay.setText(Resident_boardFragment.sum + " تومان");
-//        String show_debts = "";
-//        for (int i = 0; i < Resident_boardFragment.debtList.size(); i++) {
-//            Debt debt = Resident_boardFragment.debtList.get(i);
-//            Toast.makeText(getActivity(), debt.toString(),Toast.LENGTH_LONG).show();
-//           Boolean isCheckDebt = debt.isCheckDebt();
-//            if(isCheckDebt){
-//                show_debts= show_debts + debt.debtTitle + "/n";
-//            }
-//        }
-//
-//        txt_show_debts.setText(show_debts);
+
+        RealmResults<Debt> results = Resident_boardFragment.realm.where(Debt.class).findAll();
+        String show_debts = "";
+        for (int i = 0; i < results.size(); i++) {
+            Debt debt = results.get(i);
+            Boolean isCheckDebt = debt.isCheckDebt();
+            if (isCheckDebt) {
+                show_debts = show_debts + debt.debtTitle + " , ";
+            }
+        }
+        txt_show_debts.setText(show_debts);
+
+        Resident_boardFragment.realm.beginTransaction();
+        results.deleteAllFromRealm();
+        Resident_boardFragment.realm.commitTransaction();
+
         payment_type.add("پرداخت آنلاین");
         shaba_number.add("get Shaba number");
         spinner1 = view.findViewById(R.id.spinner1);
