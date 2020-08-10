@@ -48,7 +48,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
                 residenceRefId = units.get(position).getResidenceRefId();
                 building_NameAndUnit = unit.getBuildingTitle() + " " + unit.getUnitTitle();
                 Fragment fragment = new Resident_boardFragment();
-                Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
+                Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack("Resident_boardFragment").commit();
             }
         });
     }

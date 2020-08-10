@@ -147,7 +147,7 @@ public class Resident_panelFragment extends Fragment {
         };
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
-        request.setRetryPolicy(new DefaultRetryPolicy(18000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
 
