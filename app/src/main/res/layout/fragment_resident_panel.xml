@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="20dp"
             android:text="واحد"
             android:textSize="20dp"
             android:textStyle="bold" />
