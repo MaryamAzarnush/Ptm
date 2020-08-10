@@ -44,17 +44,6 @@
             android:text="TextView"
             android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/btn_incoming_resident"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:text="در انتظار تایید مدیر "
-            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

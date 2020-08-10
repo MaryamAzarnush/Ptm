@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:clickable="true"
-    android:gravity="center"
     tools:context=".Resident_panelFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:id="@+id/lineare"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
@@ -33,32 +33,21 @@
 
         <TextView
             android:id="@+id/textView22"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="نام ساختمان"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginRight="30dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="واحد"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp" />
-
-        <TextView
-            android:id="@+id/textView27"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="عملیات"
+            android:layout_marginRight="40dp"
+            android:text="واحد"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -66,9 +55,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_units"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/lineare" />
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lineare"
+        android:layout_centerHorizontal="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new"
@@ -79,12 +69,6 @@
         android:layout_margin="20dp"
         android:clickable="true"
         android:foreground="@drawable/ic_add_circle_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>

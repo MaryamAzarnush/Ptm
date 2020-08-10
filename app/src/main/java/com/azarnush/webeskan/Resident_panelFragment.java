@@ -61,7 +61,7 @@ public class Resident_panelFragment extends Fragment {
 
             }
         });
-        textView = root.findViewById(R.id.textView19);
+
 
         recyclerView = root.findViewById(R.id.recycler_units);
 
