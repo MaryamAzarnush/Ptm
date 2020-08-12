@@ -1,5 +1,6 @@
 package com.azarnush.webeskan;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +28,12 @@ import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
 import com.azarnush.webeskan.models.Laws.LawInfo2;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
+import com.azarnush.webeskan.models.ResidentPanel.ShebaNumber;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +44,11 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
     Spinner spinner1, spinner2;
     List<String> payment_type = new ArrayList<>();
     List<String> sheba_numbers = new ArrayList<>();
+    List<ShebaNumber> shebaNumbers_and_ids = new ArrayList<>();
     TextView txt_sum_pay, txt_show_debts;
     int debt_checked = 0;
+    Button btn_pay;
+    int ShebaNumberIdSelect;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +59,13 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
         txt_show_debts = view.findViewById(R.id.txt_show_debts);
         spinner1 = view.findViewById(R.id.spinner1);
         spinner2 = view.findViewById(R.id.spinner2);
+        btn_pay = view.findViewById(R.id.btn_pay);
+        btn_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendJSONObjectRequest_paydebt();
+            }
+        });
 
         txt_sum_pay.setText(Resident_boardFragment.sum + " تومان");
 
@@ -100,6 +114,13 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String item = adapterView.getItemAtPosition(i).toString();
+        //Toast.makeText(getContext(), item, Toast.LENGTH_LONG).show();
+        for (int j = 0; j < shebaNumbers_and_ids.size(); j++) {
+            if (item == shebaNumbers_and_ids.get(j).getShebaNumber()) {
+                ShebaNumberIdSelect = shebaNumbers_and_ids.get(j).getShebaNumberId();
+            }
+        }
+
 
     }
 
@@ -118,11 +139,15 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
             public void onResponse(JSONArray response) {
 
                 try {
-                    Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jo = response.getJSONObject(i);
-                        String s = jo.getString("shebaNumber");
-                        sheba_numbers.add(s);
+                        String shebaNumber = jo.getString("shebaNumber");
+                        int shebaNumberId = jo.getInt("shebaNumberId");
+                        sheba_numbers.add(shebaNumber);
+                        ShebaNumber shebaNumber_and_id = new ShebaNumber(shebaNumberId, shebaNumber);
+                        shebaNumbers_and_ids.add(shebaNumber_and_id);
+
                     }
 
 
@@ -143,6 +168,50 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
         request.setRetryPolicy(new DefaultRetryPolicy(5000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        queue.add(request);
+    }
+
+    public void sendJSONObjectRequest_paydebt() {
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url = "http://api.webeskan.com/api/v1/residence/paydebt";
+
+        JSONObject object = new JSONObject();
+        try {
+            object.put("residenceDebtList", Resident_boardFragment.debtListChecked);
+            object.put("residenceId", UnitsAdapter.residenceRefId);
+            object.put("shebaNumberRefId", ShebaNumberIdSelect);
+        } catch (Exception e) {
+            // Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                Log.i("ptm", error.getStackTrace().clone().toString());
+
+            }
+        };
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, object, listener, errorListener);
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(request);
     }

@@ -46,6 +46,7 @@ public class Resident_boardFragment extends Fragment {
     RecyclerView debts, the_latest_payments, announcements;
     private Debts_adapter debts_adapter;
     public static List<Debt> debtList = new ArrayList<>();
+    public static List<Debt> debtListChecked = new ArrayList<>();
     public static CheckBox ch_all;
     public static List<BoardInfo> boardList = new ArrayList<>();
     private BoardInfos_adapter boardInfos_adapter;
@@ -117,6 +118,12 @@ public class Resident_boardFragment extends Fragment {
             public void onClick(View view) {
                 sum = txt_sum.getText().toString();
                 if (sum != "" && Double.valueOf(sum) != 0.0) {
+                    for (int i = 0; i < debtList.size(); i++) {
+                        Debt debt = debtList.get(i);
+                        if (debt.isCheckDebt()) {
+                            debtListChecked.add(debt);
+                        }
+                    }
                     Fragment fragment = new PaymentFragment();
                     Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
                 }
