@@ -96,10 +96,13 @@ public class Resident_boardFragment extends Fragment {
                 debts_adapter.notifyDataSetChanged();
             }
         });
-
-
-
         return root;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Resident_panelActivity.toolbar.setTitle("واحدهای شما");
     }
 
     private void initViews() {

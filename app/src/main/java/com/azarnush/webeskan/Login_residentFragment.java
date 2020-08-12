@@ -220,7 +220,7 @@ public class Login_residentFragment extends Fragment {
                     user_id = response.getString("reasonPhrase");
 
                     shPref.edit().putString("reasonPhrase", user_id).apply();
-                    Toast.makeText(context, user_id, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(context, user_id, Toast.LENGTH_LONG).show();
 
 
                 } catch (Exception e) {

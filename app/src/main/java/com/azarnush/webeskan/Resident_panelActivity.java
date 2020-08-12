@@ -1,23 +1,15 @@
 package com.azarnush.webeskan;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.azarnush.webeskan.ui.home.HomeFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -35,7 +27,6 @@ public class Resident_panelActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
     NavigationView navigationView;
-    TextView textView_name;
     TextView textView_number;
    public static Toolbar toolbar;
     public static FragmentManager fragmentManager;
@@ -46,6 +37,7 @@ public class Resident_panelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resident_panel);
          toolbar = findViewById(R.id.toolbar_resident);
         setSupportActionBar(toolbar);
+
         fragmentManager = getSupportFragmentManager();
 
         drawer = findViewById(R.id.drawer_layout_resident);
@@ -105,32 +97,9 @@ public class Resident_panelActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (toolbar.getTitle() == "واحدهای شما") {
-            AlertDialog.Builder builder = new AlertDialog.Builder(Resident_panelActivity.this);
-            builder.setTitle(R.string.app_name);
-            builder.setIcon(R.drawable.logo);
-            builder.setMessage("آیا قصد خروج از برنامه را دارید؟")
-                    .setCancelable(false)
-                    .setPositiveButton("", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //Toast.makeText(getApplicationContext(), "finish", Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            builder.setPositiveButtonIcon(getResources().getDrawable(R.drawable.ic_done))
-                    .setNegativeButtonIcon(getResources().getDrawable(R.drawable.ic_cancel));
+            startActivity(new Intent(Resident_panelActivity.this, HomeActivity.class));
+            finish();
 
-            AlertDialog alert = builder.create();
-            alert.show();
-
-
-        } else if (toolbar.getTitle() == "پنل ساکن") {
-            Fragment fragment = new Resident_panelFragment();
-            fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).commit();
         } else super.onBackPressed();
     }
 }

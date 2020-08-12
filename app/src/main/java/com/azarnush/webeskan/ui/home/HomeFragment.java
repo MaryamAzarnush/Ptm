@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
 
                 if (homePref.getBoolean("is register", false) && homePref.getBoolean("is login", false)) {
-                    Toast.makeText(getContext(), homePref.getBoolean("is register", false) + "", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getContext(), homePref.getBoolean("is register", false) + "", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getContext(), Resident_panelActivity.class));
                     getActivity().finish();
                 } else {
@@ -96,7 +96,6 @@ public class HomeFragment extends Fragment {
     public void onPause() {
         super.onPause();
         HomeActivity.imageShare.setVisibility(View.INVISIBLE);
-        //Toast.makeText(getActivity() , "on pause",  Toast.LENGTH_LONG);
 
     }
 
@@ -104,7 +103,6 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         HomeActivity.imageShare.setVisibility(View.INVISIBLE);
-        Toast.makeText(getActivity(), "on resume", Toast.LENGTH_LONG);
         HomeActivity.toolbar.setTitle("صفحه اصلی");
 
     }
