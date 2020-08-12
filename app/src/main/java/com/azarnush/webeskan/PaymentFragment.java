@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
     View view;
     Spinner spinner1, spinner2;
     List<String> payment_type = new ArrayList<>();
-    List<String> shaba_number = new ArrayList<>();
+    List<String> sheba_numbers = new ArrayList<>();
     TextView txt_sum_pay, txt_show_debts;
     int debt_checked = 0;
 
@@ -49,11 +50,14 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
         view = inflater.inflate(R.layout.fragment_payment, container, false);
         txt_sum_pay = view.findViewById(R.id.txt_sum_pay);
         txt_show_debts = view.findViewById(R.id.txt_show_debts);
+        spinner1 = view.findViewById(R.id.spinner1);
+        spinner2 = view.findViewById(R.id.spinner2);
+
         txt_sum_pay.setText(Resident_boardFragment.sum + " تومان");
 
         RealmResults<Debt> results = Resident_boardFragment.realm.where(Debt.class).findAll();
-        for (int i = 0; i <results.size() ; i++) {
-            if(results.get(i).isCheckDebt()){
+        for (int i = 0; i < results.size(); i++) {
+            if (results.get(i).isCheckDebt()) {
                 debt_checked++;
             }
         }
@@ -76,21 +80,19 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
         results.deleteAllFromRealm();
         Resident_boardFragment.realm.commitTransaction();
 
-        payment_type.add("پرداخت آنلاین");
-        shaba_number.add("get Shaba number");
-        spinner1 = view.findViewById(R.id.spinner1);
-        spinner2 = view.findViewById(R.id.spinner2);
+        sendJSONArrayRequest_getShebaNumbers();
 
+
+        payment_type.add("پرداخت آنلاین");
+        sheba_numbers.add("شماره شبا");
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, payment_type);
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shaba_number);
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, sheba_numbers);
 //        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner1.setAdapter(dataAdapter1);
         spinner2.setAdapter(dataAdapter2);
         spinner1.setOnItemSelectedListener(this);
         spinner2.setOnItemSelectedListener(this);
-
-        sendJSONArrayRequest_getShabaNumbers();
 
         return view;
     }
@@ -105,7 +107,8 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-    public void sendJSONArrayRequest_getShabaNumbers() {
+
+    public void sendJSONArrayRequest_getShebaNumbers() {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = "http://api.webeskan.com/api/v1/residence/get-sheba-numbers/" + UnitsAdapter.residenceRefId;
@@ -116,6 +119,12 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
 
                 try {
                     Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jo = response.getJSONObject(i);
+                        String s = jo.getString("shebaNumber");
+                        sheba_numbers.add(s);
+                    }
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
