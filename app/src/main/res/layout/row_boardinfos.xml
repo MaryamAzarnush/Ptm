@@ -28,6 +28,7 @@
         android:layout_weight="0.3"
         android:gravity="center_horizontal"
         android:text="جزئیات"
+        android:textColor="#fff"
         livebutton:backgroundColor="@color/colorPrimary"
         livebutton:corners="50dp"
         livebutton:normalHeight="6dp"

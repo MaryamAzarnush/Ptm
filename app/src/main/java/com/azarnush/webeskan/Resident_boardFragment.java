@@ -157,7 +157,7 @@ public class Resident_boardFragment extends Fragment {
         super.onResume();
         Resident_panelActivity.toolbar.setTitle("پنل ساکن");
         building_NameAndUnit.setText(UnitsAdapter.building_NameAndUnit);
-
+        debtListChecked.clear();
     }
 
     public void sendJsonObjectRequest_getResidenceDashboard() {

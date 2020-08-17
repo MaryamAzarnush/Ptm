@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
 import com.azarnush.webeskan.models.Laws.LawInfo2;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
+
 import com.azarnush.webeskan.models.ResidentPanel.ShebaNumber;
 
 import org.json.JSONArray;
@@ -76,17 +77,12 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
             }
         }
         String show_debts = "";
-        for (int i = 0; i < results.size(); i++) {
-            Debt debt = results.get(i);
-            Boolean isCheckDebt = debt.isCheckDebt();
-            if (isCheckDebt) {
-                if((results.size()-1)==i || results.size()!=debt_checked){
-                    show_debts = show_debts + debt.debtTitle;
-                }else {
-                    show_debts = show_debts + debt.debtTitle + " , ";
-                }
-
+        for (int i = 0; i < Resident_boardFragment.debtListChecked.size(); i++) {
+            show_debts = show_debts + Resident_boardFragment.debtListChecked.get(i).debtTitle + " ";
+            if (Resident_boardFragment.debtListChecked.size() - 1 != i) {
+                show_debts = show_debts + ",";
             }
+
         }
         txt_show_debts.setText(show_debts);
 
@@ -179,7 +175,24 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
 
         JSONObject object = new JSONObject();
         try {
-            object.put("residenceDebtList", Resident_boardFragment.debtListChecked);
+            JSONArray jsonArray = new JSONArray();
+            for (int i = 0; i < Resident_boardFragment.debtListChecked.size(); i++) {
+                Debt debt = Resident_boardFragment.debtListChecked.get(i);
+                JSONObject jsonObject = new JSONObject();
+
+                jsonObject.put("checkedDebt", debt.checkDebt);
+                jsonObject.put("actionType", debt.actionType);
+                jsonObject.put("debtId", debt.debtId);
+                jsonObject.put("payableDebtAmount", debt.payableDebtAmount);
+                jsonObject.put("debtAmount", debt.debtAmount);
+                jsonObject.put("debtDate", debt.debtDate);
+                jsonObject.put("debtTitle", debt.debtTitle);
+                jsonObject.put("residenceId", UnitsAdapter.residenceRefId);
+
+                jsonArray.put(jsonObject);
+
+            }
+            object.put("residenceDebtList", jsonArray);
             object.put("residenceId", UnitsAdapter.residenceRefId);
             object.put("shebaNumberRefId", ShebaNumberIdSelect);
         } catch (Exception e) {
