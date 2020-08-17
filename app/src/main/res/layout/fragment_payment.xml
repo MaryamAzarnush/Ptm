@@ -67,10 +67,13 @@
 
     <TextView
         android:id="@+id/txt_show_debts"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="240dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
         android:textColor="@color/colorBlack" />
 
     <Spinner
@@ -78,7 +81,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="350dp"
         android:spinnerMode="dropdown" />
 
     <Spinner
@@ -86,7 +89,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="420dp"
         android:spinnerMode="dropdown" />
 
     <ru.katso.livebutton.LiveButton
@@ -94,7 +97,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="620dp"
+        android:layout_marginTop="500dp"
         android:text="اتصال به درگاه بانک"
         android:textColor="@color/colorBlack"
         livebutton:backgroundColor="@color/colorPrimary"

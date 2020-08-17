@@ -80,7 +80,7 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
         for (int i = 0; i < Resident_boardFragment.debtListChecked.size(); i++) {
             show_debts = show_debts + Resident_boardFragment.debtListChecked.get(i).debtTitle + " ";
             if (Resident_boardFragment.debtListChecked.size() - 1 != i) {
-                show_debts = show_debts + ",";
+                show_debts = show_debts + ", ";
             }
 
         }
