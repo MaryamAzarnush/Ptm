@@ -39,7 +39,7 @@ public class Resident_panelFragment extends Fragment {
     private RecyclerView recyclerView;
     private UnitsAdapter adapter;
     SharedPreferences shPref;
-    String user_id;
+    public static String user_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

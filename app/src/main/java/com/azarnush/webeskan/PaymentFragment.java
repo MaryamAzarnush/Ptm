@@ -1,11 +1,11 @@
 package com.azarnush.webeskan;
 
-import android.content.ContentValues;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +26,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
-import com.azarnush.webeskan.models.Laws.LawInfo2;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
 
 import com.azarnush.webeskan.models.ResidentPanel.ShebaNumber;
@@ -34,7 +33,6 @@ import com.azarnush.webeskan.models.ResidentPanel.ShebaNumber;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +47,8 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
     TextView txt_sum_pay, txt_show_debts;
     int debt_checked = 0;
     Button btn_pay;
-    int ShebaNumberIdSelect;
+    int shebaNumberIdSelect;
+    String url_pay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +64,8 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
             @Override
             public void onClick(View v) {
                 sendJSONObjectRequest_paydebt();
+
+
             }
         });
 
@@ -113,7 +114,7 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
         //Toast.makeText(getContext(), item, Toast.LENGTH_LONG).show();
         for (int j = 0; j < shebaNumbers_and_ids.size(); j++) {
             if (item == shebaNumbers_and_ids.get(j).getShebaNumber()) {
-                ShebaNumberIdSelect = shebaNumbers_and_ids.get(j).getShebaNumberId();
+                shebaNumberIdSelect = shebaNumbers_and_ids.get(j).getShebaNumberId();
             }
         }
 
@@ -194,7 +195,12 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
             }
             object.put("residenceDebtList", jsonArray);
             object.put("residenceId", UnitsAdapter.residenceRefId);
-            object.put("shebaNumberRefId", ShebaNumberIdSelect);
+            if (shebaNumberIdSelect == 0) {
+                Toast.makeText(getContext(), "لطفا شماره شبا را انتخاب نمایید", Toast.LENGTH_LONG).show();
+                return;
+            }
+            object.put("shebaNumberRefId", shebaNumberIdSelect);
+            object.put("userId", Resident_panelFragment.user_id);
         } catch (Exception e) {
             // Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
@@ -204,9 +210,12 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
             public void onResponse(JSONObject response) {
 
                 try {
-                    Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
-
-
+                    // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                    url_pay = response.getString("reasonPhrase");
+                    //Toast.makeText(getContext(), url_pay, Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url_pay));
+                    startActivity(i);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
