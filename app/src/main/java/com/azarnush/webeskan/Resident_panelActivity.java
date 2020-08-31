@@ -61,8 +61,10 @@ public class Resident_panelActivity extends AppCompatActivity {
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 switch (destination.getId()) {
                     case R.id.nav_home:
-                        startActivity(new Intent(Resident_panelActivity.this, HomeActivity.class));
-                        finish();
+                        if (toolbar.getTitle() != "صفحه اصلی") {
+                            startActivity(new Intent(Resident_panelActivity.this, HomeActivity.class));
+                            finish();
+                        }
                         break;
                     case R.id.nav_settings:
                         Fragment fragment = new ProfileFragment();
@@ -96,10 +98,10 @@ public class Resident_panelActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (toolbar.getTitle() == "واحدهای شما") {
+        }
+        if (toolbar.getTitle().toString().equalsIgnoreCase("واحدهای شما")) {
             startActivity(new Intent(Resident_panelActivity.this, HomeActivity.class));
             finish();
-
         } else super.onBackPressed();
     }
 }
