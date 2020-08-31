@@ -40,6 +40,7 @@ public class Resident_panelFragment extends Fragment {
     private UnitsAdapter adapter;
     SharedPreferences shPref;
     public static String user_id;
+    FloatingActionButton fab_new;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,13 +53,13 @@ public class Resident_panelFragment extends Fragment {
 
         shPref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
-        FloatingActionButton fab = root.findViewById(R.id.fab_new);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab_new = root.findViewById(R.id.fab_new);
+        fab_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-
+                GetBuildingCodeFragment fragment = new GetBuildingCodeFragment();
+                // Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).commit();
+                fragment.show(Resident_panelActivity.fragmentManager, "dialog1");
             }
         });
 

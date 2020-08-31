@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    tools:context=".GetBuildingCodeFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="330dp"
+        android:layout_height="280dp"
+        android:layout_centerInParent="true"
+        android:background="@color/cardview_light_background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true">
+
+            <TextView
+                android:id="@+id/txt_tittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="کد ساختمان خود را از مدیر ساختمان بپرسید"
+                android:textColor="#141314"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <ru.katso.livebutton.LiveButton
+                android:id="@+id/btn_get_units"
+                style="@style/Button_style_text"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="190dp"
+                android:text="تایید"
+                app:backgroundColor="@color/colorPrimary"
+                app:corners="50dp"
+                app:normalHeight="6dp"
+                app:pressedHeight="2dp"
+                app:shadowColor="#18443E" />
+
+
+            <com.ornach.richtext.RichEditText
+
+                android:id="@+id/code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
+                android:ems="10"
+                android:hint="کد ساختمان"
+                android:inputType="text"
+                android:padding="15dp"
+                app:rt_borderColor="#DF7F8585"
+                app:rt_borderWidth="2dp"
+                app:rt_radius="10dp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
