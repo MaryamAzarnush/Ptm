@@ -28,6 +28,7 @@ public class GetBuildingCodeFragment extends DialogFragment {
     View view;
     Button btn_get_units;
     EditText edt_code;
+    public static int size_units;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,8 +40,7 @@ public class GetBuildingCodeFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 sendJsonArrayRequest_get_unit();
-                NewunitFragment fragment = new NewunitFragment();
-                fragment.show(Resident_panelActivity.fragmentManager, "dialog2");
+
             }
         });
 
@@ -57,7 +57,9 @@ public class GetBuildingCodeFragment extends DialogFragment {
             @Override
             public void onResponse(JSONArray response) {
                 Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
-
+                size_units = response.length();
+                NewunitFragment fragment = new NewunitFragment();
+                fragment.show(Resident_panelActivity.fragmentManager, "dialog2");
             }
         };
 

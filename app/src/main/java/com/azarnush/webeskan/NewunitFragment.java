@@ -27,12 +27,19 @@ public class NewunitFragment extends DialogFragment {
         spinner3 = view.findViewById(R.id.spinner3);
         spinner4 = view.findViewById(R.id.spinner4);
 
+        for (int i = 1; i < GetBuildingCodeFragment.size_units; i++) {
+            number_of_units.add(String.valueOf(i));
+        }
+
         type_of_ownership.add("فقط ساکن هستم");
         type_of_ownership.add("فقط مالک هستم");
         type_of_ownership.add("ساکن و مالک هستم");
 
         ArrayAdapter<String> dataAdapter4 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, type_of_ownership);
         spinner4.setAdapter(dataAdapter4);
+
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, number_of_units);
+        spinner3.setAdapter(dataAdapter3);
 
 
         return view;
