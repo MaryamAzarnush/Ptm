@@ -37,10 +37,11 @@ public class Resident_panelFragment extends Fragment {
     TextView textView;
     public static List<Unit> units = new ArrayList<>();
     private RecyclerView recyclerView;
-    private UnitsAdapter adapter;
+    public static UnitsAdapter adapter;
     SharedPreferences shPref;
     public static String user_id;
     FloatingActionButton fab_new;
+    public static int i;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,7 +116,7 @@ public class Resident_panelFragment extends Fragment {
                     }
                     units.clear();
 
-                    for (int i = 0; i < response.length(); i++) {
+                    for (i = 0; i < response.length(); i++) {
 
                         try {
                             JSONObject object = response.getJSONObject(i);

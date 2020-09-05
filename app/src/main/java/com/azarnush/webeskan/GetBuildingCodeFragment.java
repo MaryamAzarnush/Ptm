@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.models.ResidentPanel.Unit;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GetBuildingCodeFragment extends DialogFragment {
@@ -29,6 +30,7 @@ public class GetBuildingCodeFragment extends DialogFragment {
     Button btn_get_units;
     EditText edt_code;
     public static int size_units;
+    public static String buildingTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,8 +58,15 @@ public class GetBuildingCodeFragment extends DialogFragment {
 
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
                 size_units = response.length();
+                try {
+                    buildingTitle = response.getJSONObject(0).getString("buildingTitle");
+                    Toast.makeText(getContext(), buildingTitle, Toast.LENGTH_LONG).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                GetBuildingCodeFragment.this.dismiss();
                 NewunitFragment fragment = new NewunitFragment();
                 fragment.show(Resident_panelActivity.fragmentManager, "dialog2");
             }
