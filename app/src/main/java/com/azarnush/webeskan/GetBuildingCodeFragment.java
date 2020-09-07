@@ -31,6 +31,8 @@ public class GetBuildingCodeFragment extends DialogFragment {
     EditText edt_code;
     public static int size_units;
     public static String buildingTitle;
+    public static String buildingRefId;
+    public static JSONArray response_listUnits;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,10 +61,12 @@ public class GetBuildingCodeFragment extends DialogFragment {
             @Override
             public void onResponse(JSONArray response) {
                 // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                response_listUnits = response;
                 size_units = response.length();
                 try {
                     buildingTitle = response.getJSONObject(0).getString("buildingTitle");
-                    Toast.makeText(getContext(), buildingTitle, Toast.LENGTH_LONG).show();
+                    buildingRefId = response.getJSONObject(0).getString("buildingRefId");
+                    // Toast.makeText(getContext(), buildingTitle, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
