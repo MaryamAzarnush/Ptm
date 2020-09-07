@@ -48,11 +48,13 @@ public class Resident_panelFragment extends Fragment {
                              Bundle savedInstanceState) {
         Resident_panelActivity.toolbar.setTitle("واحدهای شما");
 
+
         HomeActivity.navigationView.getMenu().findItem(R.id.nav_exit_Account).setVisible(true);
 
         View root = inflater.inflate(R.layout.fragment_resident_panel, container, false);
 
         shPref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        sendJsonArrayRequest_get_units();
 
         fab_new = root.findViewById(R.id.fab_new);
         fab_new.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +97,7 @@ public class Resident_panelFragment extends Fragment {
     public void sendJsonArrayRequest_get_units() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
         user_id = shPref.getString("reasonPhrase", "");
+
         String url = "http://api.webeskan.com/api/v1/users/get-units/" + user_id;
 
         Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
