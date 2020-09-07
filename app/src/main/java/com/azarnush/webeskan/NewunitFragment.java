@@ -60,7 +60,7 @@ public class NewunitFragment extends DialogFragment implements AdapterView.OnIte
             }
         });
 
-        for (int i = 1; i < GetBuildingCodeFragment.size_units; i++) {
+        for (int i = 1; i <= GetBuildingCodeFragment.size_units; i++) {
             number_of_units.add("واحد " + i);
         }
         type_of_ownership.add("فقط مالک هستم");
