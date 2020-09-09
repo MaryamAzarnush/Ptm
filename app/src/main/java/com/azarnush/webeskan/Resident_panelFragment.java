@@ -54,7 +54,7 @@ public class Resident_panelFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_resident_panel, container, false);
 
         shPref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        sendJsonArrayRequest_get_units();
+
 
         fab_new = root.findViewById(R.id.fab_new);
         fab_new.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +75,15 @@ public class Resident_panelFragment extends Fragment {
 //                sendJsonArrayRequest_get_units();
 //            }
 //        });
-
+        sendJsonArrayRequest_get_units();
         adapter = new UnitsAdapter(units);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_bottom);
         recyclerView.setAnimation(animation);
+
         recyclerView.setAdapter(adapter);
+
 
         return root;
     }
@@ -123,11 +125,12 @@ public class Resident_panelFragment extends Fragment {
 
                         try {
                             JSONObject object = response.getJSONObject(i);
+                            Boolean isAccepted = object.getBoolean("isAccepted");
                             String buildingTitle = object.getString("buildingTitle");
                             String unitTitle = object.getString("unitTitle");
                             Integer residenceRefId = object.getInt("residenceRefId");
-                            units.add(new Unit(String.valueOf(i + 1), buildingTitle, unitTitle, residenceRefId));
-                            // Toast.makeText(getContext(), units.size() + "", Toast.LENGTH_LONG).show();
+                            units.add(new Unit(isAccepted, String.valueOf(i + 1), buildingTitle, unitTitle, residenceRefId));
+                            Toast.makeText(getContext(), units.size() + response.toString(), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
                         }

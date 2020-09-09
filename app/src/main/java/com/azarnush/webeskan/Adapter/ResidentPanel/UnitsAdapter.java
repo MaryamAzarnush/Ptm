@@ -1,5 +1,6 @@
 package com.azarnush.webeskan.Adapter.ResidentPanel;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,11 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
         holder.txt_auto_number.setText(unit.getAuto_number());
         holder.txt_buildingTitle.setText(unit.getBuildingTitle());
         holder.txt_unitTitle.setText(unit.getUnitTitle());
+        if (unit.getAccepted()) {
+            holder.container_units.setBackgroundColor(Color.parseColor("#28C76F"));
+        } else {
+            holder.container_units.setBackgroundColor(Color.parseColor("#FE4C1C"));
+        }
 
         holder.container_units.setOnClickListener(new View.OnClickListener() {
             @Override

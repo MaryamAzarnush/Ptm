@@ -1,16 +1,26 @@
 package com.azarnush.webeskan.models.ResidentPanel;
 
 public class Unit {
+    Boolean isAccepted;
     String auto_number;
     String buildingTitle;
     String unitTitle;
     Integer residenceRefId;
 
-    public Unit(String auto_number, String buildingTitle, String unitTitle, Integer residenceRefId) {
+    public Unit(Boolean isAccepted, String auto_number, String buildingTitle, String unitTitle, Integer residenceRefId) {
+        this.isAccepted = isAccepted;
         this.auto_number = auto_number;
         this.buildingTitle = buildingTitle;
         this.unitTitle = unitTitle;
         this.residenceRefId = residenceRefId;
+    }
+
+    public Boolean getAccepted() {
+        return isAccepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        isAccepted = accepted;
     }
 
     public String getAuto_number() {
