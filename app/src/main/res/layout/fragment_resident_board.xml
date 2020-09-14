@@ -69,7 +69,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:gravity="left"
-                    android:textColor="#C62828" />
+                    android:textColor="#C62828"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView29"
@@ -111,7 +112,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:gravity="left"
-                    android:textColor="#2E7D32" />
+                    android:textColor="#2E7D32"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView27"
@@ -153,7 +155,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:gravity="left"
-                    android:textColor="#039BE5" />
+                    android:textColor="#039BE5"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView39"
@@ -301,7 +304,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:textColor="#5C6BC0" />
+                        android:textColor="#5C6BC0"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/textView48"

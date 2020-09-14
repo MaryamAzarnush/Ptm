@@ -49,6 +49,7 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
     Button btn_pay;
     int shebaNumberIdSelect;
     String url_pay;
+    ArrayAdapter<String> dataAdapter2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,9 +96,10 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
 
 
         payment_type.add("پرداخت آنلاین");
-        sheba_numbers.add("شماره شبا");
+//        sheba_numbers.add("شماره شبا");
+//        sheba_numbers.add()
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, payment_type);
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, sheba_numbers);
+        dataAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, sheba_numbers);
 //        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner1.setAdapter(dataAdapter1);
@@ -146,6 +148,7 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
                         shebaNumbers_and_ids.add(shebaNumber_and_id);
 
                     }
+                    dataAdapter2.notifyDataSetChanged();
 
 
                 } catch (Exception e) {
