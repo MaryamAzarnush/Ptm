@@ -29,11 +29,15 @@ import com.azarnush.webeskan.Adapter.ResidentPanel.Debts_adapter;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
 import com.azarnush.webeskan.models.ResidentPanel.BoardInfo;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.realm.Realm;
 
@@ -53,6 +57,7 @@ public class Resident_boardFragment extends Fragment {
     Button btn_payment;
     public static String sum;
     public static Realm realm = Realm.getDefaultInstance();
+    public static NumberFormat nf = NumberFormat.getNumberInstance(new Locale("fa"));
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -119,17 +124,20 @@ public class Resident_boardFragment extends Fragment {
         btn_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sum = txt_sum.getText().toString();
-                if (sum != "" && Double.valueOf(sum) != 0.0) {
-                    for (int i = 0; i < debtList.size(); i++) {
-                        Debt debt = debtList.get(i);
-                        if (debt.isCheckDebt()) {
-                            debtListChecked.add(debt);
+                if (txt_sum.getText().toString() != "") {
+                    if (!(txt_sum.getText().toString().equalsIgnoreCase(nf.format(0)))) {
+                        sum = (txt_sum.getText().toString());
+                        for (int i = 0; i < debtList.size(); i++) {
+                            Debt debt = debtList.get(i);
+                            if (debt.isCheckDebt()) {
+                                debtListChecked.add(debt);
+                            }
                         }
+                        Fragment fragment = new PaymentFragment();
+                        Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
                     }
-                    Fragment fragment = new PaymentFragment();
-                    Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack(null).commit();
                 }
+
 
             }
         });
@@ -251,21 +259,21 @@ public class Resident_boardFragment extends Fragment {
         }
         try {
             Double debtorAmount = responsee.getDouble("debtorAmount");
-            total_debt.setText(String.valueOf(debtorAmount));
+            total_debt.setText(nf.format(debtorAmount));
            // Log.i("ptm", String.valueOf(debtorAmount));
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }
         try {
             Double creditorAmount = responsee.getDouble("creditorAmount");
-            total_Credit.setText(String.valueOf(creditorAmount));
+            total_Credit.setText(nf.format(creditorAmount));
            // Log.i("ptm", String.valueOf(creditorAmount));
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
         }
         try {
             Double cashAmount = responsee.getDouble("cashAmount");
-            your_credit.setText(String.valueOf(cashAmount));
+            your_credit.setText(nf.format(cashAmount));
           //  Log.i("ptm", String.valueOf(cashAmount));
         } catch (JSONException e) {
             Log.i("ptm", e.toString());

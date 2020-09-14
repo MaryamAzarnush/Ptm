@@ -36,7 +36,7 @@ public class Debts_adapter extends RecyclerView.Adapter<Debts_adapter.DebtViewHo
 
         holder.checkBox_debt.setChecked(debt.isCheckDebt());
         holder.debtTitle.setText(debt.getDebtTitle());
-        holder.payableDebtAmount.setText(String.valueOf(debt.getPayableDebtAmount()));
+        holder.payableDebtAmount.setText(Resident_boardFragment.nf.format(debt.getPayableDebtAmount()));
         holder.debtDate.setText(String.valueOf(debt.getDebtDate()));
         holder.checkBox_debt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -48,7 +48,7 @@ public class Debts_adapter extends RecyclerView.Adapter<Debts_adapter.DebtViewHo
                     debt.setCheckDebt(false);
                     sum_selected_debts -= debt.getPayableDebtAmount();
                 }
-                Resident_boardFragment.txt_sum.setText(String.valueOf(sum_selected_debts));
+                Resident_boardFragment.txt_sum.setText(Resident_boardFragment.nf.format(sum_selected_debts));
                 int number = 0;
                 for (int i = 0; i < debtsList.size(); i++) {
                     if (debtsList.get(i).isCheckDebt()) {
