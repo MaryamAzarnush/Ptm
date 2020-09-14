@@ -42,7 +42,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
         holder.txt_auto_number.setText(unit.getAuto_number());
         holder.txt_buildingTitle.setText(unit.getBuildingTitle());
         holder.txt_unitTitle.setText(unit.getUnitTitle());
-        if (unit.getAccepted()) {
+        if (unit.getAccepted() == 1) {
             holder.container_units.setBackgroundColor(Color.parseColor("#28C76F"));
         } else {
             holder.container_units.setBackgroundColor(Color.parseColor("#FE4C1C"));

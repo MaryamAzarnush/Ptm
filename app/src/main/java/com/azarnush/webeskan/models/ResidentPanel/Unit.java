@@ -1,13 +1,13 @@
 package com.azarnush.webeskan.models.ResidentPanel;
 
 public class Unit {
-    Boolean isAccepted;
+    int isAccepted;
     String auto_number;
     String buildingTitle;
     String unitTitle;
     Integer residenceRefId;
 
-    public Unit(Boolean isAccepted, String auto_number, String buildingTitle, String unitTitle, Integer residenceRefId) {
+    public Unit(int isAccepted, String auto_number, String buildingTitle, String unitTitle, Integer residenceRefId) {
         this.isAccepted = isAccepted;
         this.auto_number = auto_number;
         this.buildingTitle = buildingTitle;
@@ -15,11 +15,11 @@ public class Unit {
         this.residenceRefId = residenceRefId;
     }
 
-    public Boolean getAccepted() {
+    public int getAccepted() {
         return isAccepted;
     }
 
-    public void setAccepted(Boolean accepted) {
+    public void setAccepted(int accepted) {
         isAccepted = accepted;
     }
 

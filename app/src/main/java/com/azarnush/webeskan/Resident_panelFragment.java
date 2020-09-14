@@ -125,7 +125,7 @@ public class Resident_panelFragment extends Fragment {
 
                         try {
                             JSONObject object = response.getJSONObject(i);
-                            Boolean isAccepted = object.getBoolean("isAccepted");
+                            int isAccepted = object.getInt("isAccepted");
                             String buildingTitle = object.getString("buildingTitle");
                             String unitTitle = object.getString("unitTitle");
                             Integer residenceRefId = object.getInt("residenceRefId");

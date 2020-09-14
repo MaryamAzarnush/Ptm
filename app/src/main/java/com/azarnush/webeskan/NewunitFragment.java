@@ -143,7 +143,7 @@ public class NewunitFragment extends DialogFragment implements AdapterView.OnIte
                     if (isSuccessStatusCode == false) {
                         Toast.makeText(getContext(), "این واحد قبلا ثبت شده است", Toast.LENGTH_LONG).show();
                     } else {
-                        Resident_panelFragment.units.add(new Unit(false, ++Resident_panelFragment.i + "", GetBuildingCodeFragment.buildingTitle, unit_title_select, null));
+                        Resident_panelFragment.units.add(new Unit(2, ++Resident_panelFragment.i + "", GetBuildingCodeFragment.buildingTitle, unit_title_select, null));
                         Resident_panelFragment.adapter.notifyDataSetChanged();
                     }
 
