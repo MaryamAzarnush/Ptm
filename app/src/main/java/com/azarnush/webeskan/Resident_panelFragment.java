@@ -130,7 +130,7 @@ public class Resident_panelFragment extends Fragment {
                             String unitTitle = object.getString("unitTitle");
                             Integer residenceRefId = object.getInt("residenceRefId");
                             units.add(new Unit(isAccepted, String.valueOf(i + 1), buildingTitle, unitTitle, residenceRefId));
-                            Toast.makeText(getContext(), units.size() + response.toString(), Toast.LENGTH_LONG).show();
+                           // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
                         }
