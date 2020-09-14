@@ -9,11 +9,11 @@
     android:background="@drawable/back1">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
+        android:layout_width="320dp"
         android:layout_height="330dp"
         android:layout_centerInParent="true"
         android:background="@color/cardview_light_background"
-        app:cardCornerRadius="30dp">
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,11 +23,12 @@
             <ru.katso.livebutton.LiveButton
                 android:id="@+id/btn_register"
                 style="@style/Button_style_text"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="60dp"
-                android:layout_below="@id/btn_login"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="190dp"
                 android:text="ثبت نام"
                 app:backgroundColor="@color/colorPrimary"
                 app:corners="50dp"
@@ -52,10 +53,12 @@
             <ru.katso.livebutton.LiveButton
                 android:id="@+id/btn_login"
                 style="@style/Button_style_text"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
+
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="190dp"
+                android:layout_marginRight="70dp"
                 android:text="ورود"
                 app:backgroundColor="@color/colorPrimary"
                 app:corners="50dp"
@@ -65,17 +68,17 @@
 
             <com.ornach.richtext.RichEditText
 
-                android:padding="15dp"
-                app:rt_borderColor="#DF7F8585"
-                app:rt_borderWidth="2dp"
-                app:rt_radius="10dp"
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
                 android:ems="10"
                 android:inputType="phone"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="110dp" />
+                android:padding="15dp"
+                app:rt_borderColor="#DF7F8585"
+                app:rt_borderWidth="2dp"
+                app:rt_radius="10dp" />
 
 
         </RelativeLayout>
