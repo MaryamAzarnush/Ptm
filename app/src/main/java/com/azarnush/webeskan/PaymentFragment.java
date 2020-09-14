@@ -199,7 +199,7 @@ public class PaymentFragment extends Fragment implements AdapterView.OnItemSelec
             object.put("residenceDebtList", jsonArray);
             object.put("residenceId", UnitsAdapter.residenceRefId);
             if (shebaNumberIdSelect == 0) {
-                Toast.makeText(getContext(), "لطفا شماره شبا را انتخاب نمایید", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "کاربر گرامی: پرداخت آنلاین توسط مدیر فعال نشده است", Toast.LENGTH_LONG).show();
                 return;
             }
             object.put("shebaNumberRefId", shebaNumberIdSelect);

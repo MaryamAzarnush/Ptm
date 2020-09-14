@@ -17,18 +17,19 @@
             style="@style/Button_style_text"
             android:layout_width="300dp"
             android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:clickable="true"
             android:text="قانون تملک آپارتمان ها و ایین نامه اجرایی"
             livebutton:backgroundColor="@color/colorPrimary"
-            android:layout_centerHorizontal="true"
-            livebutton:corners="50dp"
+            livebutton:corners="10dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
             livebutton:shadowColor="#18443E" />
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_Regulations"
+            style="@style/Button_style_text"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
@@ -36,14 +37,14 @@
             android:clickable="true"
             android:text="نمونه فرم های و مصوبات مدیریت ساختمان"
             livebutton:backgroundColor="@color/colorPrimary"
-            livebutton:corners="50dp"
+            livebutton:corners="10dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
-            livebutton:shadowColor="#18443E"
-            style="@style/Button_style_text" />
+            livebutton:shadowColor="#18443E" />
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_question_and_answer"
+            style="@style/Button_style_text"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
@@ -51,14 +52,14 @@
             android:clickable="true"
             android:text="پرسش و پاسخ آپارتمان نشینی"
             livebutton:backgroundColor="@color/colorPrimary"
-            livebutton:corners="50dp"
+            livebutton:corners="10dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
-            livebutton:shadowColor="#18443E"
-            style="@style/Button_style_text" />
+            livebutton:shadowColor="#18443E" />
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_votes"
+            style="@style/Button_style_text"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
@@ -66,14 +67,14 @@
             android:clickable="true"
             android:text="آراء قضایی"
             livebutton:backgroundColor="@color/colorPrimary"
-            livebutton:corners="50dp"
+            livebutton:corners="10dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
-            livebutton:shadowColor="#18443E"
-            style="@style/Button_style_text" />
+            livebutton:shadowColor="#18443E" />
 
         <ru.katso.livebutton.LiveButton
             android:id="@+id/btn_Rules_webeskan"
+            style="@style/Button_style_text"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
@@ -81,11 +82,10 @@
             android:clickable="true"
             android:text="قوانین و مقررات وب اسکان"
             livebutton:backgroundColor="@color/colorPrimary"
-            livebutton:corners="50dp"
+            livebutton:corners="10dp"
             livebutton:normalHeight="6dp"
             livebutton:pressedHeight="2dp"
-            livebutton:shadowColor="#18443E"
-            style="@style/Button_style_text" />
+            livebutton:shadowColor="#18443E" />
 
     </RelativeLayout>
 

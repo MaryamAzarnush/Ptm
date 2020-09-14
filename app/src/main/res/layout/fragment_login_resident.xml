@@ -49,14 +49,14 @@
                 android:id="@+id/login"
                 style="@style/Button_style_text"
                 android:layout_width="110dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/pinGroup"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
                 android:text="تایید"
                 app:backgroundColor="@color/colorPrimary"
-                app:corners="50dp"
+                app:corners="10dp"
                 app:normalHeight="6dp"
                 app:pressedHeight="2dp"
                 app:shadowColor="#18443E" />
@@ -65,18 +65,18 @@
                 android:id="@+id/btn_resend"
                 style="@style/Button_style_text"
                 android:layout_width="110dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/pinGroup"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
+                android:enabled="false"
                 android:text="ارسال مجدد"
                 app:backgroundColor="#575757"
-                app:corners="50dp"
+                app:corners="10dp"
                 app:normalHeight="6dp"
                 app:pressedHeight="2dp"
-                app:shadowColor="#2E2B29"
-                android:enabled="false"/>
+                app:shadowColor="#2E2B29" />
 
 
             <com.hendraanggrian.appcompat.widget.PinGroup

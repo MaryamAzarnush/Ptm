@@ -107,7 +107,8 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="360dp"
                     android:background="@drawable/back_spinner"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:visibility="invisible" />
 
                 <ImageView
                     android:id="@+id/imageView12"
@@ -117,7 +118,8 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="370dp"
                     android:baselineAlignBottom="false"
-                    android:src="@drawable/ic_baseline_expand_more_24" />
+                    android:src="@drawable/ic_baseline_expand_more_24"
+                    android:visibility="invisible" />
 
                 <ru.katso.livebutton.LiveButton
                     android:id="@+id/btn_pay"
@@ -128,7 +130,7 @@
                     android:text="اتصال به درگاه بانک"
                     android:textColor="@color/colorBlack"
                     livebutton:backgroundColor="@color/colorPrimary"
-                    livebutton:corners="50dp"
+                    livebutton:corners="10dp"
                     livebutton:normalHeight="6dp"
                     livebutton:pressedHeight="2dp"
                     livebutton:shadowColor="#18443E" />

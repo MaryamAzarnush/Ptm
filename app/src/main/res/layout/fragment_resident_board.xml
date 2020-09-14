@@ -285,14 +285,15 @@
                     <ru.katso.livebutton.LiveButton
                         android:id="@+id/btn_payment"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         android:layout_weight="0.3"
                         android:gravity="left"
                         android:text="پرداخت مبلغ :"
 
                         android:textColor="#fff"
+
                         livebutton:backgroundColor="@color/colorPrimary"
-                        livebutton:corners="50dp"
+                        livebutton:corners="10dp"
                         livebutton:normalHeight="6dp"
                         livebutton:pressedHeight="2dp"
                         livebutton:shadowColor="#18443E" />

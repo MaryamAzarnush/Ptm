@@ -23,14 +23,14 @@
     <ru.katso.livebutton.LiveButton
         android:id="@+id/operation"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_weight="0.3"
         android:gravity="center_horizontal"
         android:text="جزئیات"
         android:textColor="#fff"
         livebutton:backgroundColor="@color/colorPrimary"
-        livebutton:corners="50dp"
+        livebutton:corners="10dp"
         livebutton:normalHeight="6dp"
         livebutton:pressedHeight="2dp"
         livebutton:shadowColor="#18443E" />
