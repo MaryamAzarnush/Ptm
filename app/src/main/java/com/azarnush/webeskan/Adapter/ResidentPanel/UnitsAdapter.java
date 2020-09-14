@@ -1,11 +1,13 @@
 package com.azarnush.webeskan.Adapter.ResidentPanel;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,11 +23,13 @@ import java.util.List;
 public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHolder> {
 
     List<Unit> units;
+    Context context;
     public static Integer residenceRefId;
     public static String building_NameAndUnit;
 
-    public UnitsAdapter(List<Unit> units) {
+    public UnitsAdapter(List<Unit> units, Context context) {
         this.units = units;
+        this.context = context;
     }
 
     @NonNull
@@ -36,7 +40,7 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UnitViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final UnitViewHolder holder, final int position) {
         final Unit unit = units.get(position);
 
         holder.txt_auto_number.setText(unit.getAuto_number());
@@ -51,10 +55,14 @@ public class UnitsAdapter extends RecyclerView.Adapter<UnitsAdapter.UnitViewHold
         holder.container_units.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                residenceRefId = units.get(position).getResidenceRefId();
-                building_NameAndUnit = unit.getBuildingTitle() + " " + unit.getUnitTitle();
-                Fragment fragment = new Resident_boardFragment();
-                Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack("Resident_boardFragment").commit();
+                if (units.get(position).getAccepted() == 1) {
+                    residenceRefId = units.get(position).getResidenceRefId();
+                    building_NameAndUnit = unit.getBuildingTitle() + " " + unit.getUnitTitle();
+                    Fragment fragment = new Resident_boardFragment();
+                    Resident_panelActivity.fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_resident, fragment).addToBackStack("Resident_boardFragment").commit();
+                } else {
+                    Toast.makeText(context, "در انتظار تایید مدیر", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

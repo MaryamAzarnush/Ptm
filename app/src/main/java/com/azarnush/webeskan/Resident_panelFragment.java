@@ -76,7 +76,7 @@ public class Resident_panelFragment extends Fragment {
 //            }
 //        });
         sendJsonArrayRequest_get_units();
-        adapter = new UnitsAdapter(units);
+        adapter = new UnitsAdapter(units, getActivity());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_bottom);
