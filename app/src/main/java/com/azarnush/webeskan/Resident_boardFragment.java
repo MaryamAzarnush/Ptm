@@ -26,9 +26,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.azarnush.webeskan.Adapter.ResidentPanel.BoardInfos_adapter;
 import com.azarnush.webeskan.Adapter.ResidentPanel.Debts_adapter;
+import com.azarnush.webeskan.Adapter.ResidentPanel.ReceiveAdapter;
 import com.azarnush.webeskan.Adapter.ResidentPanel.UnitsAdapter;
 import com.azarnush.webeskan.models.ResidentPanel.BoardInfo;
 import com.azarnush.webeskan.models.ResidentPanel.Debt;
+import com.azarnush.webeskan.models.ResidentPanel.Receive;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +52,8 @@ public class Resident_boardFragment extends Fragment {
     RecyclerView debts, the_latest_payments, announcements;
     private Debts_adapter debts_adapter;
     public static List<Debt> debtList = new ArrayList<>();
+    public static List<Receive> receiveList = new ArrayList<>();
+    private ReceiveAdapter receiveAdapter;
     public static List<Debt> debtListChecked = new ArrayList<>();
     public static CheckBox ch_all;
     public static List<BoardInfo> boardList = new ArrayList<>();
@@ -79,6 +83,10 @@ public class Resident_boardFragment extends Fragment {
                 boardInfos_adapter = new BoardInfos_adapter(boardList);
                 announcements.setLayoutManager(new LinearLayoutManager(getActivity()));
                 announcements.setAdapter(boardInfos_adapter);
+
+                receiveAdapter = new ReceiveAdapter(receiveList);
+                the_latest_payments.setLayoutManager(new LinearLayoutManager(getActivity()));
+                the_latest_payments.setAdapter(receiveAdapter);
 
 
             }
@@ -218,11 +226,18 @@ public class Resident_boardFragment extends Fragment {
 
         try {
             if (responsee.getJSONArray("receiveList").length() != 0) {
+                receiveList.clear();
                 JSONArray jsonArray = responsee.getJSONArray("receiveList");
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                   // Log.i("ptm", jsonObject.toString());
+                    JSONObject jo = jsonArray.getJSONObject(i);
+                    // Log.i("ptm", jsonObject.toString());
+                    //Toast.makeText(getContext(), jo.toString(), Toast.LENGTH_LONG).show();
+                    Receive receive = new Receive(jo.getInt("receiveId"), jo.getString("receiveDate"), jo.getDouble("receiveAmount"),
+                            jo.getString("receiveDescription"), jo.getString("receiveType"), jo.getString("transactionNumber"));
+                    receiveList.add(receive);
                 }
+                receiveAdapter.notifyDataSetChanged();
+
             }
         } catch (JSONException e) {
             Log.i("ptm", e.toString());
