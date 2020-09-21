@@ -42,7 +42,7 @@
                 android:layout_marginTop="190dp"
                 android:text="تایید"
                 app:backgroundColor="@color/colorPrimary"
-                app:corners="50dp"
+                app:corners="10dp"
                 app:normalHeight="6dp"
                 app:pressedHeight="2dp"
                 app:shadowColor="#18443E" />

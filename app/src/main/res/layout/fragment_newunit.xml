@@ -55,7 +55,7 @@
         android:clickable="true"
         android:text="ورود"
         livebutton:backgroundColor="@color/colorPrimary"
-        livebutton:corners="50dp"
+        livebutton:corners="10dp"
         livebutton:normalHeight="6dp"
         livebutton:pressedHeight="2dp"
         livebutton:shadowColor="#18443E" />
